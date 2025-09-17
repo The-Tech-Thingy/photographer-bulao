@@ -1,3 +1,112 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "A professional photographer capturing a portrait.",
+      "imageUrl": "https://picsum.photos/seed/hero1/1920/1080",
+      "imageHint": "professional photographer"
+    },
+    {
+      "id": "profile-1",
+      "description": "Profile picture for photographer Jane Doe.",
+      "imageUrl": "https://picsum.photos/seed/jane/200/200",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "profile-2",
+      "description": "Profile picture for photographer John Smith.",
+      "imageUrl": "https://picsum.photos/seed/john/200/200",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "profile-3",
+      "description": "Profile picture for photographer Alex Ray.",
+      "imageUrl": "https://picsum.photos/seed/alex/200/200",
+      "imageHint": "person city"
+    },
+    {
+      "id": "profile-4",
+      "description": "Profile picture for photographer Priya Singh.",
+      "imageUrl": "https://picsum.photos/seed/priya/200/200",
+      "imageHint": "woman nature"
+    },
+    {
+      "id": "portfolio-1-1",
+      "description": "A beautiful wedding photo.",
+      "imageUrl": "https://picsum.photos/seed/wedding1/600/400",
+      "imageHint": "wedding couple"
+    },
+    {
+      "id": "portfolio-1-2",
+      "description": "A stunning landscape photo.",
+      "imageUrl": "https://picsum.photos/seed/landscape1/600/400",
+      "imageHint": "mountain landscape"
+    },
+    {
+      "id": "portfolio-1-3",
+      "description": "A close-up portrait.",
+      "imageUrl": "https://picsum.photos/seed/portrait1/600/400",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "portfolio-1-4",
+      "description": "Dynamic event photography.",
+      "imageUrl": "https://picsum.photos/seed/event1/600/400",
+      "imageHint": "concert crowd"
+    },
+    {
+      "id": "portfolio-2-1",
+      "description": "A candid family portrait.",
+      "imageUrl": "https://picsum.photos/seed/family2/600/400",
+      "imageHint": "family laughing"
+    },
+    {
+      "id": "portfolio-2-2",
+      "description": "Product photography shot.",
+      "imageUrl": "https://picsum.photos/seed/product2/600/400",
+      "imageHint": "watch lifestyle"
+    },
+    {
+      "id": "portfolio-2-3",
+      "description": "Architectural photography.",
+      "imageUrl": "https://picsum.photos/seed/arch2/600/400",
+      "imageHint": "modern building"
+    },
+    {
+      "id": "portfolio-2-4",
+      "description": "Food photography.",
+      "imageUrl": "https://picsum.photos/seed/food2/600/400",
+      "imageHint": "gourmet dish"
+    },
+    {
+      "id": "portfolio-3-1",
+      "description": "Street photography in a busy city.",
+      "imageUrl": "https://picsum.photos/seed/street3/600/400",
+      "imageHint": "city street"
+    },
+    {
+      "id": "portfolio-3-2",
+      "description": "Fashion photoshoot.",
+      "imageUrl": "https://picsum.photos/seed/fashion3/600/400",
+      "imageHint": "fashion model"
+    },
+    {
+      "id": "portfolio-4-1",
+      "description": "Corporate headshot.",
+      "imageUrl": "https://picsum.photos/seed/headshot4/600/400",
+      "imageHint": "business person"
+    },
+    {
+      "id": "portfolio-4-2",
+      "description": "Newborn baby photography.",
+      "imageUrl": "https://picsum.photos/seed/newborn4/600/400",
+      "imageHint": "newborn baby"
+    },
+    {
+      "id": "map-placeholder",
+      "description": "A stylized map of a city with pins.",
+      "imageUrl": "https://picsum.photos/seed/map/1200/800",
+      "imageHint": "city map"
+    }
+  ]
 }
