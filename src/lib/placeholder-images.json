@@ -2,7 +2,7 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "A professional photographer capturing a portrait.",
+      "description": "A professional photographer capturing a portrait in a modern setting.",
       "imageUrl": "https://picsum.photos/seed/hero1/1920/1080",
       "imageHint": "professional photographer"
     },
@@ -107,6 +107,30 @@
       "description": "A stylized map of a city with pins.",
       "imageUrl": "https://picsum.photos/seed/map/1200/800",
       "imageHint": "city map"
+    },
+    {
+      "id": "service-headshot",
+      "description": "A professional corporate headshot.",
+      "imageUrl": "https://picsum.photos/seed/service1/400/400",
+      "imageHint": "business portrait"
+    },
+    {
+      "id": "service-real-estate",
+      "description": "A modern apartment interior.",
+      "imageUrl": "https://picsum.photos/seed/service2/400/400",
+      "imageHint": "apartment interior"
+    },
+    {
+      "id": "service-food",
+      "description": "A delicious gourmet burger.",
+      "imageUrl": "https://picsum.photos/seed/service3/400/400",
+      "imageHint": "gourmet burger"
+    },
+    {
+      "id": "service-event",
+      "description": "People celebrating at a party.",
+      "imageUrl": "https://picsum.photos/seed/service4/400/400",
+      "imageHint": "party celebration"
     }
   ]
 }
