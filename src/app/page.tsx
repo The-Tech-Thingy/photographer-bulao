@@ -18,8 +18,8 @@ export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
 
   return (
-    <div className="flex flex-col gap-8 md:gap-16">
-      <section className="relative h-[70vh] w-full">
+    <div className="flex flex-col gap-8 md:gap-12">
+      <section className="relative h-[60vh] w-full">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
@@ -30,22 +30,22 @@ export default function Home() {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-end text-center text-white pb-20 p-4">
-          <h1 className="text-4xl md:text-7xl font-headline font-bold">
-            Book a Professional Photographer
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
+          <h1 className="text-4xl md:text-6xl font-headline font-bold text-primary">
+            Photographer Bulao
           </h1>
-          <p className="mt-4 max-w-3xl text-lg md:text-xl text-slate-300">
-            Capture your moments, instantly. Find and book professional photographers near you for any occasion.
+          <p className="mt-4 max-w-2xl text-lg md:text-xl text-slate-200">
+            Capture your moments, instantly. Find and book professional photographers near you.
           </p>
-          <div className="mt-8 w-full max-w-2xl">
+          <div className="mt-8 w-full max-w-xl">
             <div className="relative">
               <Input
                 type="text"
-                placeholder="What are you looking for? e.g. Wedding photographer in New York"
-                className="h-16 rounded-full bg-background/80 pr-16 text-lg text-foreground placeholder:text-muted-foreground border-2 border-primary/50 focus:border-primary backdrop-blur-sm"
+                placeholder="e.g. Wedding photographer in Mumbai"
+                className="h-14 rounded-full bg-white/90 pr-12 text-lg text-foreground"
               />
-              <Button size="icon" className="absolute right-2.5 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full" aria-label="Search">
+              <Button size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full" aria-label="Search">
                 <Search />
               </Button>
             </div>
@@ -53,7 +53,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 -mt-24 z-20">
+      <section className="container mx-auto px-4">
         <h2 className="text-3xl font-bold font-headline text-center">Featured Photographers</h2>
         <p className="text-muted-foreground text-center mt-2 mb-8">Top-rated professionals ready for your next event.</p>
         <Carousel
@@ -87,7 +87,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-secondary/50 py-16">
+      <section className="bg-card py-16">
         <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold font-headline">How It Works</h2>
             <div className="mt-8 grid gap-8 md:grid-cols-3">
