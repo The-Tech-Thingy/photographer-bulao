@@ -1,5 +1,5 @@
 import { BookingForm } from '@/components/booking-form';
-import { Briefcase } from 'lucide-react';
+import { Briefcase, Bot } from 'lucide-react';
 
 export default function BookPage() {
   return (

@@ -7,10 +7,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck } from 'lucide-react';
+import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from './ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Textarea } from './ui/textarea';
+import { handleRecommendation } from '@/app/recommend/actions';
 
 const services = [
   { name: 'Corporate Headshots', icon: Briefcase },
@@ -34,6 +37,7 @@ export function BookingForm() {
     delivery: 'edited',
     package: 'standard',
   });
+  const [aiService, setAiService] = useState('');
   const { toast } = useToast();
 
   const handleChange = (field: string, value: string) => {
@@ -44,7 +48,6 @@ export function BookingForm() {
   const prevStep = () => setStep((prev) => prev - 1);
 
   const handleConfirmBooking = () => {
-    // Simulate booking confirmation
     toast({
         title: "Booking Confirmed!",
         description: "A professional photographer has been assigned to your booking.",
@@ -53,24 +56,86 @@ export function BookingForm() {
     nextStep();
   }
 
-  const progress = (step / 6) * 100;
+  const onAiRecommendation = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const result = await handleRecommendation(null, formData);
+    if (result.error) {
+        toast({
+            title: "An error occurred",
+            description: result.error,
+            variant: "destructive",
+        })
+    } else {
+        setAiService(result.recommendedPackages);
+    }
+  }
+
+  const selectAiService = () => {
+    handleChange('service', 'AI Recommended');
+    nextStep();
+  }
+
+  const progress = (step / 5) * 100;
 
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
-          <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {services.map((service) => (
-              <Card
-                key={service.name}
-                className={`p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${formData.service === service.name ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`}
-                onClick={() => { handleChange('service', service.name); nextStep(); }}
-              >
-                <service.icon className="w-8 h-8 mb-2 text-primary" />
-                <p className="font-semibold text-sm">{service.name}</p>
-              </Card>
-            ))}
-          </CardContent>
+            <Tabs defaultValue="list" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="list">Select a Service</TabsTrigger>
+                    <TabsTrigger value="ai">Use AI Assistant</TabsTrigger>
+                </TabsList>
+                <TabsContent value="list">
+                     <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
+                        {services.map((service) => (
+                        <Card
+                            key={service.name}
+                            className={`p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${formData.service === service.name ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`}
+                            onClick={() => { handleChange('service', service.name); nextStep(); }}
+                        >
+                            <service.icon className="w-8 h-8 mb-2 text-primary" />
+                            <p className="font-semibold text-sm">{service.name}</p>
+                        </Card>
+                        ))}
+                    </CardContent>
+                </TabsContent>
+                <TabsContent value="ai">
+                    <CardContent className="pt-6">
+                        <form onSubmit={onAiRecommendation} className="space-y-4">
+                            <Textarea
+                                name="userInput"
+                                placeholder="e.g., 'I need a photographer for my small, outdoor wedding in the afternoon. I prefer a candid, photojournalistic style. Around 50 guests.'"
+                                rows={5}
+                                required
+                                />
+                            <Button type="submit" className="w-full">
+                                Analyze My Need
+                            </Button>
+                        </form>
+                        {aiService && (
+                            <div className="mt-4">
+                                <h3 className="text-lg font-semibold flex items-center gap-2">
+                                    <Sparkles className="h-5 w-5 text-primary"/>
+                                    Suggested Service
+                                </h3>
+                                <Card className="bg-muted mt-2">
+                                    <CardContent className="p-4">
+                                        <div
+                                            className="prose prose-sm max-w-none text-foreground dark:prose-invert"
+                                            dangerouslySetInnerHTML={{ __html: aiService.replace(/\n/g, '<br />')}}
+                                        />
+                                         <Button onClick={selectAiService} className="w-full mt-4">
+                                            Proceed with this Service
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        )}
+                    </CardContent>
+                </TabsContent>
+            </Tabs>
         );
       case 2:
         return (
@@ -243,7 +308,7 @@ export function BookingForm() {
         )}
       </CardHeader>
       {renderStep()}
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between mt-6">
         {step > 1 && step < 5 && (
           <Button variant="outline" onClick={prevStep}>
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
