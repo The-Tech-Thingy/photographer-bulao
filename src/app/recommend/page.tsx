@@ -8,9 +8,9 @@ export default function RecommendPage() {
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
             <Bot className="h-8 w-8" />
         </div>
-        <h1 className="text-3xl font-bold font-headline">Smart Package Recommendation</h1>
+        <h1 className="text-3xl font-bold font-headline">AI Assistant</h1>
         <p className="mt-2 text-lg text-muted-foreground max-w-xl">
-          Not sure which package to choose? Describe your needs, and our AI will suggest the perfect fit for you.
+          Not sure which service to choose? Describe your needs, and our AI will suggest the perfect fit for you.
         </p>
       </div>
       <div className="mt-8">

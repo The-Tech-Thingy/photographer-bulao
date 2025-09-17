@@ -20,7 +20,7 @@ import {
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/bookings', label: 'My Bookings' },
-  { href: '/recommend', label: 'Recommend Package' },
+  { href: '/recommend', label: 'AI Assistant' },
   { href: '/chat', label: 'Chat' },
 ];
 

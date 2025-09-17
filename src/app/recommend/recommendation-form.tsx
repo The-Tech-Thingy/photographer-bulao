@@ -40,7 +40,7 @@ export function RecommendationForm() {
                 Analyzing...
               </>
             ) : (
-                'Get Recommendation'
+                'Get AI Recommendation'
             )}
           </Button>
         </form>

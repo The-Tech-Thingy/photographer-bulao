@@ -1,10 +1,8 @@
 import Image from 'next/image';
-import { availablePhotographers } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
-import { Search, Camera, Building, Utensils, Briefcase, PartyPopper } from 'lucide-react';
-import { PhotographerCard } from '@/components/photographer-card';
+import { Search, Camera, Building, Utensils, Briefcase, PartyPopper, CalendarCheck, Award } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -37,7 +35,7 @@ export default function Home() {
             Mumbai's Top Photographers, On-Demand
           </h1>
           <p className="mt-4 max-w-2xl text-base md:text-xl text-muted-foreground">
-            From corporate headshots to personal events, book pre-vetted professional photographers in minutes.
+            Book a service, and we'll assign a pre-vetted professional photographer for your shoot. Simple as that.
           </p>
           <div className="mt-6 md:mt-8 w-full max-w-md md:max-w-xl">
             <div className="relative">
@@ -55,7 +53,7 @@ export default function Home() {
       </section>
 
       <section className="container mx-auto px-4 -mt-16 md:-mt-24 z-20">
-        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-6 md:mb-8">Photography Services in Mumbai</h2>
+        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-6 md:mb-8">Book by Service</h2>
          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {photographyServices.map((service) => {
             const serviceImage = PlaceHolderImages.find((img) => img.id === service.imageId);
@@ -85,46 +83,31 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="container mx-auto px-4 mt-8 md:mt-0">
-        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center">Available Now in Mumbai</h2>
-        <p className="text-muted-foreground text-center mt-2 mb-8 max-w-lg mx-auto">Ready to shoot! These photographers are available for instant booking.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {availablePhotographers.slice(0, 4).map((photographer) => (
-             <PhotographerCard key={photographer.id} photographer={photographer} />
-          ))}
-        </div>
-        <div className="text-center mt-8">
-            <Button size="lg" variant="outline">
-                See all available photographers
-            </Button>
-        </div>
-      </section>
-
       <section className="bg-muted py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold font-headline">Simple, Fast, and Reliable</h2>
+            <h2 className="text-2xl md:text-3xl font-bold font-headline">The Uber for Photographers</h2>
              <p className="text-muted-foreground text-center mt-2 mb-8 max-w-2xl mx-auto">Get stunning photos in just a few clicks. Here's how we make it easy for you.</p>
             <div className="mt-12 grid gap-10 md:gap-8 md:grid-cols-3">
               <div className="flex flex-col items-center">
                 <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background">
                   <Search className="h-8 w-8 md:h-10 md:w-10 text-primary" />
                 </div>
-                <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">1. Find Your Photographer</h3>
-                <p className="mt-2 text-muted-foreground">Search by specialty and location in Mumbai. View portfolios and reviews to find your perfect match.</p>
+                <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">1. Select a Service</h3>
+                <p className="mt-2 text-muted-foreground">Choose the type of photography you need, from events to portraits.</p>
               </div>
               <div className="flex flex-col items-center">
                  <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 md:h-10 md:w-10 text-primary"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+                  <CalendarCheck className="h-8 w-8 md:h-10 md:w-10 text-primary"/>
                 </div>
-                <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">2. Book Instantly</h3>
-                <p className="mt-2 text-muted-foreground">Select a package, choose a date and time, and confirm your booking with our secure payment system.</p>
+                <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">2. Schedule Your Shoot</h3>
+                <p className="mt-2 text-muted-foreground">Pick a date, time, and location that works for you. Book and pay in seconds.</p>
               </div>
               <div className="flex flex-col items-center">
                  <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background">
-                  <Camera className="h-8 w-8 md:h-10 md:w-10 text-primary" />
+                  <Award className="h-8 w-8 md:h-10 md:w-10 text-primary" />
                 </div>
-                <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">3. Enjoy Your Photos</h3>
-                <p className="mt-2 text-muted-foreground">Meet your photographer and have a great session. Receive and review your high-quality photos right in the app.</p>
+                <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">3. Get a Pro Assigned</h3>
+                <p className="mt-2 text-muted-foreground">We'll assign a vetted, professional photographer to your booking. Guaranteed.</p>
               </div>
             </div>
         </div>
