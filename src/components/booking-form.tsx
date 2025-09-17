@@ -7,13 +7,17 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles } from 'lucide-react';
+import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles, Calendar as CalendarIcon } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from './ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from './ui/textarea';
 import { handleRecommendation } from '@/app/recommend/actions';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Calendar } from './ui/calendar';
+import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 
 const services = [
   { name: 'Corporate Headshots', icon: Briefcase },
@@ -28,11 +32,18 @@ const packages = [
     { id: 'premium', name: 'Premium', price: 950, features: ['8 hours coverage', '250 edited photos', 'Online gallery', 'Prints (10)'] },
 ]
 
+const timeSlots = [
+  '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', 
+  '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM'
+];
+
 export function BookingForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: '',
     location: '',
+    date: new Date(),
+    time: '',
     duration: '2',
     delivery: 'edited',
     package: 'standard',
@@ -40,7 +51,7 @@ export function BookingForm() {
   const [aiService, setAiService] = useState('');
   const { toast } = useToast();
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -149,6 +160,46 @@ export function BookingForm() {
                         <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
                         <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
                     </div>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="date"><CalendarIcon className="inline-block mr-2"/>Date</Label>
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                <Button
+                                    variant={"outline"}
+                                    className={cn(
+                                    "w-full justify-start text-left font-normal",
+                                    !formData.date && "text-muted-foreground"
+                                    )}
+                                >
+                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                    {formData.date ? format(formData.date, "PPP") : <span>Pick a date</span>}
+                                </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0">
+                                <Calendar
+                                    mode="single"
+                                    selected={formData.date}
+                                    onSelect={(date) => handleChange('date', date)}
+                                    initialFocus
+                                />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="time"><Clock className="inline-block mr-2"/>Time</Label>
+                            <Select value={formData.time} onValueChange={(value) => handleChange('time', value)}>
+                                <SelectTrigger id="time">
+                                    <SelectValue placeholder="Select a time slot" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {timeSlots.map((time) => (
+                                        <SelectItem key={time} value={time}>{time}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
                     <div className="space-y-2">
                         <Label htmlFor="duration"><Clock className="inline-block mr-2"/>Duration (hours)</Label>
                         <Select value={formData.duration} onValueChange={(value) => handleChange('duration', value)}>
@@ -235,6 +286,11 @@ export function BookingForm() {
                     </div>
                     <Separator/>
                     <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Date & Time</span>
+                        <span className="font-semibold">{formData.date ? format(formData.date, "PPP") : 'Not set'} at {formData.time || 'Not set'}</span>
+                    </div>
+                    <Separator/>
+                    <div className="flex justify-between items-center">
                         <span className="text-muted-foreground">Duration</span>
                         <span className="font-semibold">{formData.duration} hour(s)</span>
                     </div>
@@ -315,7 +371,7 @@ export function BookingForm() {
           </Button>
         )}
         {step > 1 && step < 4 && (
-            <Button onClick={nextStep} disabled={ (step === 2 && !formData.location) }>
+            <Button onClick={nextStep} disabled={ (step === 2 && (!formData.location || !formData.date || !formData.time)) }>
                 Next
             </Button>
         )}
