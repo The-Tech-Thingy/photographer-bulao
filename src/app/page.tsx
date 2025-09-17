@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
-import { Search, Camera, Building, Utensils, Briefcase, PartyPopper, CalendarCheck, Award } from 'lucide-react';
+import { Search, Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -37,18 +37,19 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-base md:text-xl text-muted-foreground">
             Book a service, and we'll assign a pre-vetted professional photographer for your shoot. Simple as that.
           </p>
-          <div className="mt-6 md:mt-8 w-full max-w-md md:max-w-xl">
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder="e.g. Wedding photographer in Bandra"
-                className="h-12 md:h-14 rounded-full bg-background pr-12 text-base md:text-lg text-foreground focus:ring-primary/50 focus:ring-2"
-              />
-              <Button size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 md:h-10 md:w-10 rounded-full" aria-label="Search">
-                <Search className="h-5 w-5"/>
-              </Button>
+          <div className="mt-6 md:mt-8 w-full max-w-md md:max-w-xl flex flex-col sm:flex-row gap-2 items-center">
+            <div className="relative w-full">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                    type="text"
+                    placeholder="Wedding photographer in Bandra"
+                    className="h-12 md:h-14 rounded-full bg-background/80 pl-12 text-base text-foreground focus:ring-primary/50 focus:ring-2 backdrop-blur-sm"
+                />
             </div>
-          </div>
+            <Link href="/book">
+                <Button size="lg" className="h-12 md:h-14 rounded-full px-8 w-full sm:w-auto font-bold text-base">Book Now</Button>
+            </Link>
+        </div>
         </div>
       </section>
 
@@ -58,8 +59,8 @@ export default function Home() {
           {photographyServices.map((service) => {
             const serviceImage = PlaceHolderImages.find((img) => img.id === service.imageId);
             return (
-              <Link href="#" key={service.name}>
-                <Card className="overflow-hidden group hover:shadow-primary/20 transition-all duration-300">
+              <Link href="/book" key={service.name}>
+                <Card className="overflow-hidden group hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1">
                   <CardContent className="p-0 relative">
                     {serviceImage && (
                       <Image
@@ -71,7 +72,7 @@ export default function Home() {
                         className="object-cover w-full aspect-square transition-transform duration-300 group-hover:scale-105"
                       />
                     )}
-                    <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-2 text-center">
+                    <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-2 text-center transition-colors group-hover:bg-black/40">
                       <service.icon className="w-8 h-8 text-white mb-2"/>
                       <h3 className="text-base md:text-xl font-semibold text-white">{service.name}</h3>
                     </div>
@@ -83,31 +84,31 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="bg-muted py-12 md:py-16">
+      <section className="bg-muted py-12 md:py-20">
         <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold font-headline">The Uber for Photographers</h2>
-             <p className="text-muted-foreground text-center mt-2 mb-8 max-w-2xl mx-auto">Get stunning photos in just a few clicks. Here's how we make it easy for you.</p>
+             <p className="text-muted-foreground text-center mt-2 mb-8 max-w-2xl mx-auto">Get stunning photos in just a few clicks. A guaranteed professional photographer will be assigned for your work.</p>
             <div className="mt-12 grid gap-10 md:gap-8 md:grid-cols-3">
               <div className="flex flex-col items-center">
-                <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background">
+                <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background shadow-lg">
                   <Search className="h-8 w-8 md:h-10 md:w-10 text-primary" />
                 </div>
                 <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">1. Select a Service</h3>
-                <p className="mt-2 text-muted-foreground">Choose the type of photography you need, from events to portraits.</p>
+                <p className="mt-2 text-muted-foreground max-w-xs">Choose the type of photography you need, from events to portraits.</p>
               </div>
               <div className="flex flex-col items-center">
-                 <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background">
+                 <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background shadow-lg">
                   <CalendarCheck className="h-8 w-8 md:h-10 md:w-10 text-primary"/>
                 </div>
                 <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">2. Schedule Your Shoot</h3>
-                <p className="mt-2 text-muted-foreground">Pick a date, time, and location that works for you. Book and pay in seconds.</p>
+                <p className="mt-2 text-muted-foreground max-w-xs">Pick a date, time, and location that works for you. Book and pay in seconds.</p>
               </div>
               <div className="flex flex-col items-center">
-                 <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background">
+                 <div className="flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-background shadow-lg">
                   <Award className="h-8 w-8 md:h-10 md:w-10 text-primary" />
                 </div>
                 <h3 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold">3. Get a Pro Assigned</h3>
-                <p className="mt-2 text-muted-foreground">We'll assign a vetted, professional photographer to your booking. Guaranteed.</p>
+                <p className="mt-2 text-muted-foreground max-w-xs">We'll assign a vetted, professional photographer to your booking. Guaranteed.</p>
               </div>
             </div>
         </div>

@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { BookingDialog } from '@/components/booking-dialog';
+import Link from 'next/link';
 
 export async function generateStaticParams() {
   return photographers.map((p) => ({ id: p.id }));
@@ -58,11 +58,11 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
               <p className="text-muted-foreground mt-4 text-sm">{photographer.bio}</p>
             </CardContent>
             <CardFooter>
-                <BookingDialog photographer={photographer}>
+                <Link href="/book" className='w-full'>
                     <Button className="w-full" size="lg">
-                        Book Now
+                        Book a Service
                     </Button>
-              </BookingDialog>
+                </Link>
             </CardFooter>
           </Card>
         </div>
@@ -115,9 +115,9 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
                     </ul>
                   </CardContent>
                    <CardFooter>
-                    <BookingDialog photographer={photographer} selectedPackage={pkg}>
+                    <Link href="/book" className='w-full'>
                         <Button variant="outline" className="w-full">Select Package</Button>
-                    </BookingDialog>
+                    </Link>
                   </CardFooter>
                 </Card>
               ))}

@@ -1,0 +1,272 @@
+'use client';
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Separator } from './ui/separator';
+import { useToast } from '@/hooks/use-toast';
+
+const services = [
+  { name: 'Corporate Headshots', icon: Briefcase },
+  { name: 'Real Estate', icon: Building },
+  { name: 'Food & Menu', icon: Utensils },
+  { name: 'Private Events', icon: PartyPopper },
+];
+
+const packages = [
+    { id: 'basic', name: 'Basic', price: 250, features: ['2 hours coverage', '50 edited photos'] },
+    { id: 'standard', name: 'Standard', price: 500, features: ['4 hours coverage', '100 edited photos', 'Online gallery'] },
+    { id: 'premium', name: 'Premium', price: 950, features: ['8 hours coverage', '250 edited photos', 'Online gallery', 'Prints (10)'] },
+]
+
+export function BookingForm() {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    service: '',
+    location: '',
+    duration: '2',
+    delivery: 'edited',
+    package: 'standard',
+  });
+  const { toast } = useToast();
+
+  const handleChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const nextStep = () => setStep((prev) => prev + 1);
+  const prevStep = () => setStep((prev) => prev - 1);
+
+  const handleConfirmBooking = () => {
+    // Simulate booking confirmation
+    toast({
+        title: "Booking Confirmed!",
+        description: "A professional photographer has been assigned to your booking.",
+        variant: "default",
+    })
+    nextStep();
+  }
+
+  const progress = (step / 6) * 100;
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {services.map((service) => (
+              <Card
+                key={service.name}
+                className={`p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${formData.service === service.name ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`}
+                onClick={() => { handleChange('service', service.name); nextStep(); }}
+              >
+                <service.icon className="w-8 h-8 mb-2 text-primary" />
+                <p className="font-semibold text-sm">{service.name}</p>
+              </Card>
+            ))}
+          </CardContent>
+        );
+      case 2:
+        return (
+            <>
+                <CardHeader>
+                    <CardTitle>Shoot Details</CardTitle>
+                    <CardDescription>Where and when will the photoshoot take place?</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="space-y-2">
+                        <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
+                        <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="duration"><Clock className="inline-block mr-2"/>Duration (hours)</Label>
+                        <Select value={formData.duration} onValueChange={(value) => handleChange('duration', value)}>
+                            <SelectTrigger id="duration">
+                                <SelectValue placeholder="Select duration" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {[...Array(8)].map((_, i) => (
+                                <SelectItem key={i + 1} value={`${i + 1}`}>{i + 1} hour{i > 0 ? 's' : ''}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="space-y-2">
+                        <Label><ImageIcon className="inline-block mr-2"/>Photo Delivery</Label>
+                        <RadioGroup defaultValue="edited" value={formData.delivery} onValueChange={(value) => handleChange('delivery', value)} className="flex gap-4">
+                            <Label className={`flex-1 p-4 border rounded-md cursor-pointer ${formData.delivery === 'raw' ? 'border-primary' : ''}`}>
+                                <RadioGroupItem value="raw" id="r1" className="sr-only" />
+                                <h4 className="font-semibold">Raw Photos</h4>
+                                <p className="text-sm text-muted-foreground">Unedited, original files.</p>
+                            </Label>
+                            <Label className={`flex-1 p-4 border rounded-md cursor-pointer ${formData.delivery === 'edited' ? 'border-primary' : ''}`}>
+                                <RadioGroupItem value="edited" id="r2" className="sr-only" />
+                                <h4 className="font-semibold">Edited Photos</h4>
+                                <p className="text-sm text-muted-foreground">Professionally edited and color graded.</p>
+                             </Label>
+                        </RadioGroup>
+                    </div>
+                </CardContent>
+            </>
+        );
+       case 3:
+        return (
+          <>
+            <CardHeader>
+              <CardTitle>Select a Package</CardTitle>
+              <CardDescription>Choose a package that fits your needs.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {packages.map((pkg) => (
+                <Card key={pkg.id} className={`flex flex-col cursor-pointer transition-all ${formData.package === pkg.id ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`} onClick={() => handleChange('package', pkg.id)}>
+                    <CardHeader>
+                        <CardTitle>{pkg.name}</CardTitle>
+                        <CardDescription className="text-2xl font-bold text-primary">${pkg.price}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                        <ul className="space-y-2 text-sm">
+                        {pkg.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-2">
+                                <Check className="h-4 w-4 text-green-500" />
+                                <span>{feature}</span>
+                            </li>
+                        ))}
+                        </ul>
+                    </CardContent>
+                    <CardFooter>
+                         <div className={`w-full flex justify-center items-center h-6`}>
+                            {formData.package === pkg.id && <CheckCircle className="text-primary" />}
+                        </div>
+                    </CardFooter>
+                </Card>
+              ))}
+            </CardContent>
+          </>
+        );
+      case 4:
+        const selectedPkg = packages.find(p => p.id === formData.package);
+        return (
+          <>
+            <CardHeader>
+              <CardTitle>Confirm Booking</CardTitle>
+              <CardDescription>Review your details and make a partial payment to confirm.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div className="p-4 border rounded-lg space-y-4 bg-muted/50">
+                    <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Service</span>
+                        <span className="font-semibold">{formData.service}</span>
+                    </div>
+                    <Separator/>
+                    <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Location</span>
+                        <span className="font-semibold">{formData.location}</span>
+                    </div>
+                    <Separator/>
+                    <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Duration</span>
+                        <span className="font-semibold">{formData.duration} hour(s)</span>
+                    </div>
+                    <Separator/>
+                     <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Delivery</span>
+                        <span className="font-semibold capitalize">{formData.delivery} Photos</span>
+                    </div>
+                    <Separator/>
+                    <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Package</span>
+                        <span className="font-semibold capitalize">{selectedPkg?.name}</span>
+                    </div>
+                     <Separator/>
+                    <div className="flex justify-between items-center text-lg">
+                        <span className="font-bold">Total</span>
+                        <span className="font-bold text-primary">${selectedPkg?.price}</span>
+                    </div>
+                </div>
+                <div className="p-4 border rounded-lg">
+                     <h4 className="font-semibold mb-2">Partial Advance Payment</h4>
+                     <p className="text-sm text-muted-foreground mb-4">Pay 25% now to confirm your booking. The rest is due after photo delivery.</p>
+                     <p className="text-2xl font-bold text-center">${(selectedPkg?.price ?? 0) * 0.25}</p>
+                </div>
+            </CardContent>
+          </>
+        );
+        case 5:
+            return (
+                <div className='flex flex-col items-center text-center p-8'>
+                    <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
+                    <h2 className='text-2xl font-bold font-headline mb-2'>Booking Confirmed!</h2>
+                    <p className='text-muted-foreground max-w-md mb-6'>A professional photographer has been assigned. You can now track their ETA and see your final photos in the bookings section.</p>
+                    <div className='p-6 border rounded-lg w-full max-w-sm space-y-4 bg-muted/50'>
+                         <div className="flex items-center gap-4">
+                            <div className='p-3 bg-background rounded-full'>
+                                <User className="w-6 h-6 text-primary"/>
+                            </div>
+                            <div>
+                                <p className='text-sm text-muted-foreground'>Assigned Photographer</p>
+                                <p className='font-bold'>Priya Singh</p>
+                            </div>
+                        </div>
+                        <Separator />
+                        <div className="flex items-center gap-4">
+                            <div className='p-3 bg-background rounded-full'>
+                                <Truck className="w-6 h-6 text-primary"/>
+                            </div>
+                            <div>
+                                <p className='text-sm text-muted-foreground'>ETA</p>
+                                <p className='font-bold'>Arriving in 15 minutes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <Progress value={progress} className="w-full h-2 mb-4" />
+        {step === 1 && (
+            <>
+                <CardTitle>Select a Service</CardTitle>
+                <CardDescription>What type of photoshoot are you looking for?</CardDescription>
+            </>
+        )}
+      </CardHeader>
+      {renderStep()}
+      <CardFooter className="flex justify-between">
+        {step > 1 && step < 5 && (
+          <Button variant="outline" onClick={prevStep}>
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+          </Button>
+        )}
+        {step > 1 && step < 4 && (
+            <Button onClick={nextStep} disabled={ (step === 2 && !formData.location) }>
+                Next
+            </Button>
+        )}
+        {step === 4 && (
+            <Button className='w-full' size="lg" onClick={handleConfirmBooking}>
+                <CreditCard className="mr-2 h-4 w-4" /> Pay & Confirm Booking
+            </Button>
+        )}
+        {step === 5 && (
+            <div className='w-full flex justify-center'>
+                <Button onClick={() => window.location.href = '/bookings'}>
+                    Go to My Bookings
+                </Button>
+            </div>
+        )}
+      </CardFooter>
+    </Card>
+  );
+}
