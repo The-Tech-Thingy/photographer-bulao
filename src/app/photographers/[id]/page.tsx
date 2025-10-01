@@ -58,9 +58,9 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
               <p className="text-muted-foreground mt-4 text-sm">{photographer.bio}</p>
             </CardContent>
             <CardFooter>
-                <Link href="/book" className='w-full'>
-                    <Button className="w-full" size="lg">
-                        Book a Service
+                <Link href="/book" className='w-full' passHref>
+                    <Button className="w-full" size="lg" asChild>
+                        <a>Book a Service</a>
                     </Button>
                 </Link>
             </CardFooter>
@@ -115,8 +115,10 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
                     </ul>
                   </CardContent>
                    <CardFooter>
-                    <Link href="/book" className='w-full'>
-                        <Button variant="outline" className="w-full">Select Package</Button>
+                    <Link href="/book" className='w-full' passHref>
+                        <Button variant="outline" className="w-full" asChild>
+                            <a>Select Package</a>
+                        </Button>
                     </Link>
                   </CardFooter>
                 </Card>

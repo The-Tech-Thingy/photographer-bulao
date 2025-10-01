@@ -49,9 +49,9 @@ export default function BookingsPage() {
               </Badge>
             </TableCell>
             <TableCell className="text-right">
-                <Link href={`/photographers/${booking.photographerId}`}>
-                    <Button variant="ghost" size="sm">
-                        {booking.status === 'Completed' ? 'Book Again' : 'View Profile'}
+                <Link href={`/photographers/${booking.photographerId}`} passHref>
+                    <Button variant="ghost" size="sm" asChild>
+                       <a>{booking.status === 'Completed' ? 'Book Again' : 'View Profile'}</a>
                     </Button>
                 </Link>
             </TableCell>
