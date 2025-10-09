@@ -28,9 +28,9 @@ const services = [
 ];
 
 const packages = [
-    { id: 'basic', name: 'Basic', price: 2000, features: ['2 hours coverage', '50 edited photos'] },
-    { id: 'standard', name: 'Standard', price: 3000, features: ['4 hours coverage', '100 edited photos', 'Online gallery'] },
-    { id: 'premium', name: 'Premium', price: 5000, features: ['8 hours coverage', '250 edited photos', 'Online gallery', 'Prints (10)'] },
+    { id: 'basic', name: 'Basic', price: 1000, features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
+    { id: 'standard', name: 'Standard', price: 1500, features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
+    { id: 'premium', name: 'Premium', price: 2500, features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
 ]
 
 const timeSlots = [
@@ -244,20 +244,20 @@ export function BookingForm() {
           <>
             <CardHeader>
               <CardTitle>Select a Package</CardTitle>
-              <CardDescription>Choose a base package. Price varies by duration.</CardDescription>
+              <CardDescription>Choose a base package. The final price will be calculated based on the duration you selected.</CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {packages.map((pkg) => (
                 <Card key={pkg.id} className={`flex flex-col cursor-pointer transition-all ${formData.package === pkg.id ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`} onClick={() => handleChange('package', pkg.id)}>
                     <CardHeader>
                         <CardTitle>{pkg.name}</CardTitle>
-                        <CardDescription className="text-2xl font-bold text-primary">₹{pkg.price}</CardDescription>
+                        <CardDescription className="text-2xl font-bold text-primary">₹{pkg.price}<span className="text-sm font-normal text-muted-foreground">/hr</span></CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow">
                         <ul className="space-y-2 text-sm">
                         {pkg.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-green-500" />
+                            <li key={i} className="flex items-start gap-2">
+                                <Check className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
                                 <span>{feature}</span>
                             </li>
                         ))}
@@ -309,12 +309,9 @@ export function BookingForm() {
       case 5:
         const selectedPkg = packages.find(p => p.id === formData.package);
         const duration = parseInt(formData.duration);
-        const packagePrice = selectedPkg?.price ?? 0;
+        const packagePrice = selectedPkg ? selectedPkg.price * duration : 0;
         
         let total = packagePrice;
-        if(selectedPkg?.id === 'basic') total = 1000 * duration;
-        if(selectedPkg?.id === 'standard') total = 1500 * duration;
-        if(selectedPkg?.id === 'premium') total = 2500 * duration;
 
         if (formData.extraPhotographer) {
             total += ADDON_PRICES.extraPhotographer * duration;
@@ -358,7 +355,7 @@ export function BookingForm() {
                     <Separator/>
                     <div className="flex justify-between items-center">
                         <span className="text-muted-foreground">Package</span>
-                        <span className="font-semibold capitalize">{selectedPkg?.name}</span>
+                        <span className="font-semibold capitalize">{selectedPkg?.name} (₹{packagePrice})</span>
                     </div>
                      { (formData.extraPhotographer || formData.videographer) && <Separator/> }
                      { formData.extraPhotographer && (
