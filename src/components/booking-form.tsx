@@ -28,9 +28,9 @@ const services = [
 ];
 
 const packages = [
-    { id: 'basic', name: 'Basic', price: 250, features: ['2 hours coverage', '50 edited photos'] },
-    { id: 'standard', name: 'Standard', price: 500, features: ['4 hours coverage', '100 edited photos', 'Online gallery'] },
-    { id: 'premium', name: 'Premium', price: 950, features: ['8 hours coverage', '250 edited photos', 'Online gallery', 'Prints (10)'] },
+    { id: 'basic', name: 'Basic', price: 2000, features: ['2 hours coverage', '50 edited photos'] },
+    { id: 'standard', name: 'Standard', price: 3000, features: ['4 hours coverage', '100 edited photos', 'Online gallery'] },
+    { id: 'premium', name: 'Premium', price: 5000, features: ['8 hours coverage', '250 edited photos', 'Online gallery', 'Prints (10)'] },
 ]
 
 const timeSlots = [
@@ -244,14 +244,14 @@ export function BookingForm() {
           <>
             <CardHeader>
               <CardTitle>Select a Package</CardTitle>
-              <CardDescription>Choose a package that fits your needs.</CardDescription>
+              <CardDescription>Choose a base package. Price varies by duration.</CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {packages.map((pkg) => (
                 <Card key={pkg.id} className={`flex flex-col cursor-pointer transition-all ${formData.package === pkg.id ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`} onClick={() => handleChange('package', pkg.id)}>
                     <CardHeader>
                         <CardTitle>{pkg.name}</CardTitle>
-                        <CardDescription className="text-2xl font-bold text-primary">${pkg.price}</CardDescription>
+                        <CardDescription className="text-2xl font-bold text-primary">₹{pkg.price}</CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow">
                         <ul className="space-y-2 text-sm">
@@ -308,12 +308,19 @@ export function BookingForm() {
         );
       case 5:
         const selectedPkg = packages.find(p => p.id === formData.package);
-        let total = selectedPkg?.price ?? 0;
+        const duration = parseInt(formData.duration);
+        const packagePrice = selectedPkg?.price ?? 0;
+        
+        let total = packagePrice;
+        if(selectedPkg?.id === 'basic') total = 1000 * duration;
+        if(selectedPkg?.id === 'standard') total = 1500 * duration;
+        if(selectedPkg?.id === 'premium') total = 2500 * duration;
+
         if (formData.extraPhotographer) {
-            total += ADDON_PRICES.extraPhotographer * parseInt(formData.duration);
+            total += ADDON_PRICES.extraPhotographer * duration;
         }
         if (formData.videographer) {
-            total += ADDON_PRICES.videographer * parseInt(formData.duration);
+            total += ADDON_PRICES.videographer * duration;
         }
 
         return (
@@ -357,13 +364,13 @@ export function BookingForm() {
                      { formData.extraPhotographer && (
                         <div className="flex justify-between items-center">
                             <span className="text-muted-foreground">Extra Photographer</span>
-                            <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer * parseInt(formData.duration)}</span>
+                            <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer * duration}</span>
                         </div>
                      )}
                      { formData.videographer && (
                         <div className="flex justify-between items-center">
                             <span className="text-muted-foreground">Videographer</span>
-                            <span className="font-semibold">₹{ADDON_PRICES.videographer * parseInt(formData.duration)}</span>
+                            <span className="font-semibold">₹{ADDON_PRICES.videographer * duration}</span>
                         </div>
                      )}
                      <Separator/>
