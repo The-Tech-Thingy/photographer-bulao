@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles, Calendar as CalendarIcon } from 'lucide-react';
+import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles, Calendar as CalendarIcon, Video, Users } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from './ui/separator';
 import { useToast } from '@/hooks/use-toast';
@@ -18,6 +18,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Calendar } from './ui/calendar';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import { Checkbox } from './ui/checkbox';
 
 const services = [
   { name: 'Corporate Headshots', icon: Briefcase },
@@ -37,6 +38,11 @@ const timeSlots = [
   '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM'
 ];
 
+const ADDON_PRICES = {
+    extraPhotographer: 2000,
+    videographer: 3000
+}
+
 export function BookingForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -47,6 +53,8 @@ export function BookingForm() {
     duration: '2',
     delivery: 'edited',
     package: 'standard',
+    extraPhotographer: false,
+    videographer: false,
   });
   const [aiService, setAiService] = useState('');
   const { toast } = useToast();
@@ -87,7 +95,7 @@ export function BookingForm() {
     nextStep();
   }
 
-  const progress = (step / 5) * 100;
+  const progress = (step / 6) * 100;
 
   const renderStep = () => {
     switch (step) {
@@ -265,8 +273,49 @@ export function BookingForm() {
             </CardContent>
           </>
         );
-      case 4:
+    case 4:
+        return (
+            <>
+            <CardHeader>
+                <CardTitle>Add-on Services</CardTitle>
+                <CardDescription>Enhance your photoshoot experience.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div className={`flex items-start space-x-3 p-4 border rounded-md  ${formData.extraPhotographer ? 'border-primary' : ''}`}>
+                    <Checkbox id="extra-photographer" checked={formData.extraPhotographer} onCheckedChange={(checked) => handleChange('extraPhotographer', checked)} className="mt-1" />
+                    <div className="grid gap-1.5 leading-none">
+                        <label htmlFor="extra-photographer" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center">
+                            <Users className="inline-block mr-2" /> Extra Photographer
+                        </label>
+                        <p className="text-sm text-muted-foreground">
+                            Ideal for large events to ensure no moment is missed. (₹{ADDON_PRICES.extraPhotographer} per hour)
+                        </p>
+                    </div>
+                </div>
+                <div className={`flex items-start space-x-3 p-4 border rounded-md  ${formData.videographer ? 'border-primary' : ''}`}>
+                    <Checkbox id="videographer" checked={formData.videographer} onCheckedChange={(checked) => handleChange('videographer', checked)} className="mt-1" />
+                    <div className="grid gap-1.5 leading-none">
+                         <label htmlFor="videographer" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center">
+                            <Video className="inline-block mr-2" /> Videographer/Cinematographer
+                        </label>
+                        <p className="text-sm text-muted-foreground">
+                            Get a stunning cinematic video of your event. (₹{ADDON_PRICES.videographer} per hour)
+                        </p>
+                    </div>
+                </div>
+            </CardContent>
+            </>
+        );
+      case 5:
         const selectedPkg = packages.find(p => p.id === formData.package);
+        let total = selectedPkg?.price ?? 0;
+        if (formData.extraPhotographer && formData.package === 'standard') {
+            total += ADDON_PRICES.extraPhotographer * parseInt(formData.duration);
+        }
+        if (formData.videographer) {
+            total += ADDON_PRICES.videographer * parseInt(formData.duration);
+        }
+
         return (
           <>
             <CardHeader>
@@ -304,21 +353,34 @@ export function BookingForm() {
                         <span className="text-muted-foreground">Package</span>
                         <span className="font-semibold capitalize">{selectedPkg?.name}</span>
                     </div>
+                     { (formData.extraPhotographer || formData.videographer) && <Separator/> }
+                     { formData.extraPhotographer && formData.package === 'standard' && (
+                        <div className="flex justify-between items-center">
+                            <span className="text-muted-foreground">Extra Photographer</span>
+                            <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer * parseInt(formData.duration)}</span>
+                        </div>
+                     )}
+                     { formData.videographer && (
+                        <div className="flex justify-between items-center">
+                            <span className="text-muted-foreground">Videographer</span>
+                            <span className="font-semibold">₹{ADDON_PRICES.videographer * parseInt(formData.duration)}</span>
+                        </div>
+                     )}
                      <Separator/>
                     <div className="flex justify-between items-center text-lg">
                         <span className="font-bold">Total</span>
-                        <span className="font-bold text-primary">${selectedPkg?.price}</span>
+                        <span className="font-bold text-primary">₹{total}</span>
                     </div>
                 </div>
                 <div className="p-4 border rounded-lg">
                      <h4 className="font-semibold mb-2">Partial Advance Payment</h4>
                      <p className="text-sm text-muted-foreground mb-4">Pay 25% now to confirm your booking. The rest is due after photo delivery.</p>
-                     <p className="text-2xl font-bold text-center">${(selectedPkg?.price ?? 0) * 0.25}</p>
+                     <p className="text-2xl font-bold text-center">₹{total * 0.25}</p>
                 </div>
             </CardContent>
           </>
         );
-        case 5:
+        case 6:
             return (
                 <div className='flex flex-col items-center text-center p-8'>
                     <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
@@ -365,22 +427,22 @@ export function BookingForm() {
       </CardHeader>
       {renderStep()}
       <CardFooter className="flex justify-between mt-6">
-        {step > 1 && step < 5 && (
+        {step > 1 && step < 6 && (
           <Button variant="outline" onClick={prevStep}>
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
         )}
-        {step > 1 && step < 4 && (
+        {step > 1 && step < 5 && (
             <Button onClick={nextStep} disabled={ (step === 2 && (!formData.location || !formData.date || !formData.time)) }>
                 Next
             </Button>
         )}
-        {step === 4 && (
+        {step === 5 && (
             <Button className='w-full' size="lg" onClick={handleConfirmBooking}>
                 <CreditCard className="mr-2 h-4 w-4" /> Pay & Confirm Booking
             </Button>
         )}
-        {step === 5 && (
+        {step === 6 && (
             <div className='w-full flex justify-center'>
                 <Button onClick={() => window.location.href = '/bookings'}>
                     Go to My Bookings
