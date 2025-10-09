@@ -309,7 +309,7 @@ export function BookingForm() {
       case 5:
         const selectedPkg = packages.find(p => p.id === formData.package);
         let total = selectedPkg?.price ?? 0;
-        if (formData.extraPhotographer && formData.package === 'standard') {
+        if (formData.extraPhotographer) {
             total += ADDON_PRICES.extraPhotographer * parseInt(formData.duration);
         }
         if (formData.videographer) {
@@ -354,7 +354,7 @@ export function BookingForm() {
                         <span className="font-semibold capitalize">{selectedPkg?.name}</span>
                     </div>
                      { (formData.extraPhotographer || formData.videographer) && <Separator/> }
-                     { formData.extraPhotographer && formData.package === 'standard' && (
+                     { formData.extraPhotographer && (
                         <div className="flex justify-between items-center">
                             <span className="text-muted-foreground">Extra Photographer</span>
                             <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer * parseInt(formData.duration)}</span>
