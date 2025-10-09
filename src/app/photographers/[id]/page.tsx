@@ -2,7 +2,7 @@ import { photographers } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { Star, MapPin, CheckCircle } from 'lucide-react';
+import { Star, MapPin, CheckCircle, Users, Video } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -101,7 +101,7 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
                 <Card key={pkg.id}>
                   <CardHeader>
                     <CardTitle>{pkg.name}</CardTitle>
-                    <CardDescription className="text-xl font-bold text-primary">${pkg.price}</CardDescription>
+                    <CardDescription className="text-xl font-bold text-primary">₹{pkg.price}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground text-sm mb-4">{pkg.description}</p>
@@ -126,6 +126,36 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
             </div>
           </div>
           
+          <Separator />
+
+          <div>
+            <h2 className="text-2xl font-bold font-headline mb-4">Add-ons</h2>
+            <div className="space-y-4">
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-lg flex items-center gap-2">
+                           <Users className="h-5 w-5 text-primary" /> Extra Photographer
+                        </CardTitle>
+                        <p className="text-lg font-bold text-primary">₹2000/hr</p>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-muted-foreground">Ideal for large events to ensure no moment is missed. A second professional will capture different angles and moments simultaneously.</p>
+                    </CardContent>
+                </Card>
+                 <Card>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                        <CardTitle className="text-lg flex items-center gap-2">
+                           <Video className="h-5 w-5 text-primary" /> Videographer
+                        </CardTitle>
+                        <p className="text-lg font-bold text-primary">₹3000/hr</p>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-muted-foreground">Get a stunning cinematic video of your event, edited to perfection. Perfect for weddings, corporate events, and special occasions.</p>
+                    </CardContent>
+                </Card>
+            </div>
+          </div>
+
           <Separator />
 
           <div>
