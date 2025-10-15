@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, Search } from 'lucide-react';
+import { Check, Search, Briefcase, Building, Utensils, PartyPopper } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -20,9 +20,16 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
+const iconMap = {
+    Briefcase,
+    Building,
+    Utensils,
+    PartyPopper
+}
+
 interface Service {
     name: string;
-    icon: React.ElementType;
+    icon: keyof typeof iconMap;
 }
 
 interface ServiceSearchProps {
@@ -65,23 +72,26 @@ export function ServiceSearch({ services }: ServiceSearchProps) {
           <CommandList>
             <CommandEmpty>No service found.</CommandEmpty>
             <CommandGroup>
-              {services.map((service) => (
-                <CommandItem
-                  key={service.name}
-                  value={service.name}
-                  onSelect={handleSelect}
-                  className="flex items-center gap-2"
-                >
-                  <service.icon className="h-5 w-5 text-muted-foreground" />
-                  <span>{service.name}</span>
-                   <Check
-                    className={cn(
-                      'ml-auto h-4 w-4',
-                      value === service.name.toLowerCase() ? 'opacity-100' : 'opacity-0'
-                    )}
-                  />
-                </CommandItem>
-              ))}
+              {services.map((service) => {
+                const Icon = iconMap[service.icon];
+                return (
+                    <CommandItem
+                    key={service.name}
+                    value={service.name}
+                    onSelect={handleSelect}
+                    className="flex items-center gap-2"
+                    >
+                    {Icon && <Icon className="h-5 w-5 text-muted-foreground" />}
+                    <span>{service.name}</span>
+                    <Check
+                        className={cn(
+                        'ml-auto h-4 w-4',
+                        value === service.name.toLowerCase() ? 'opacity-100' : 'opacity-0'
+                        )}
+                    />
+                    </CommandItem>
+                )
+            })}
             </CommandGroup>
           </CommandList>
         </Command>

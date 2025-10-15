@@ -8,10 +8,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ServiceSearch } from '@/components/service-search';
 
 const photographyServices = [
-  { name: 'Corporate Headshots', icon: Briefcase, imageId: 'service-headshot' },
-  { name: 'Real Estate', icon: Building, imageId: 'service-real-estate' },
-  { name: 'Food & Menu', icon: Utensils, imageId: 'service-food' },
-  { name: 'Private Events', icon: PartyPopper, imageId: 'service-event' },
+  { name: 'Corporate Headshots', icon: 'Briefcase', imageId: 'service-headshot' },
+  { name: 'Real Estate', icon: 'Building', imageId: 'service-real-estate' },
+  { name: 'Food & Menu', icon: 'Utensils', imageId: 'service-food' },
+  { name: 'Private Events', icon: 'PartyPopper', imageId: 'service-event' },
 ];
 
 const trustedByLogos = [
@@ -69,6 +69,7 @@ export default function Home() {
          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {photographyServices.map((service) => {
             const serviceImage = PlaceHolderImages.find((img) => img.id === service.imageId);
+            const Icon = { Briefcase, Building, Utensils, PartyPopper }[service.icon as 'Briefcase' | 'Building' | 'Utensils' | 'PartyPopper']
             return (
               <Link href="/book" key={service.name}>
                 <Card className="overflow-hidden group hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 border-0 rounded-lg">
@@ -84,7 +85,7 @@ export default function Home() {
                       />
                     )}
                     <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-2 text-center transition-colors group-hover:bg-black/40">
-                      <service.icon className="w-8 h-8 text-white mb-2"/>
+                      {Icon && <Icon className="w-8 h-8 text-white mb-2"/>}
                       <h3 className="text-base md:text-xl font-semibold text-white">{service.name}</h3>
                     </div>
                   </CardContent>
