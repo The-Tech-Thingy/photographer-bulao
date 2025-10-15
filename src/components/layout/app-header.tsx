@@ -35,7 +35,7 @@ export function AppHeader() {
           href={link.href}
           className={cn(
             'text-sm font-medium transition-colors hover:text-primary',
-            pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+            pathname === link.href ? 'text-primary' : 'text-foreground'
           )}
         >
           {link.label}
@@ -89,7 +89,7 @@ export function AppHeader() {
         <div className="hidden md:flex flex-1 items-center justify-end space-x-4">
             <NavLinks />
             <div className="flex items-center gap-4">
-                <Link href="/book">
+                <Link href="/book" passHref>
                     <Button>
                         <Briefcase className="mr-2 h-4 w-4"/>
                         Book Now
