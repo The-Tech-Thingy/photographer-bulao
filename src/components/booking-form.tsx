@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -28,9 +29,9 @@ const services = [
 ];
 
 const packages = [
-    { id: 'basic', name: 'Basic', price: 1000, features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
-    { id: 'standard', name: 'Standard', price: 1500, features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
-    { id: 'premium', name: 'Premium', price: 2500, features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
+    { id: 'basic', name: 'Basic', price: 2000, description: 'Best for simple needs. Price is per hour.', features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
+    { id: 'standard', name: 'Standard', price: 3000, description: 'Most popular choice. Price is per hour.', features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
+    { id: 'premium', name: 'Premium', price: 5000, description: 'For the highest quality. Price is per hour.', features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
 ]
 
 const timeSlots = [
@@ -44,6 +45,7 @@ const ADDON_PRICES = {
 }
 
 export function BookingForm() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: '',
@@ -58,6 +60,14 @@ export function BookingForm() {
   });
   const [aiService, setAiService] = useState('');
   const { toast } = useToast();
+
+  useEffect(() => {
+    const serviceFromUrl = searchParams.get('service');
+    if (serviceFromUrl) {
+      handleChange('service', serviceFromUrl);
+      setStep(2);
+    }
+  }, [searchParams]);
 
   const handleChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -244,7 +254,7 @@ export function BookingForm() {
           <>
             <CardHeader>
               <CardTitle>Select a Package</CardTitle>
-              <CardDescription>Choose a base package. The final price will be calculated based on the duration you selected.</CardDescription>
+              <CardDescription>The final price will be calculated based on the duration you selected.</CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {packages.map((pkg) => (
@@ -254,6 +264,7 @@ export function BookingForm() {
                         <CardDescription className="text-2xl font-bold text-primary">₹{pkg.price}<span className="text-sm font-normal text-muted-foreground">/hr</span></CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow">
+                        <p className='text-sm text-muted-foreground mb-3'>{pkg.description}</p>
                         <ul className="space-y-2 text-sm">
                         {pkg.features.map((feature, i) => (
                             <li key={i} className="flex items-start gap-2">
