@@ -13,10 +13,6 @@ import Link from 'next/link';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 
-export async function generateStaticParams() {
-  return photographers.map((p) => ({ id: p.id }));
-}
-
 export default function PhotographerProfilePage({ params }: { params: { id: string } }) {
   const photographer = photographers.find((p) => p.id === params.id);
   const [newRating, setNewRating] = useState(0);
