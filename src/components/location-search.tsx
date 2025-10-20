@@ -86,7 +86,7 @@ export function LocationSearch() {
         >
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           {value
-            ? locations.find((loc) => loc.name.toLowerCase() === value)?.name || 'My Current Location'
+            ? locations.find((loc) => loc.name.toLowerCase() === value.toLowerCase())?.name || 'My Current Location'
             : 'Search for a location...'}
         </Button>
       </PopoverTrigger>
@@ -108,8 +108,8 @@ export function LocationSearch() {
                         return (
                             <CommandItem
                             key={loc.name}
-                            value={loc.name.toLowerCase()}
-                            onSelect={handleSelect}
+                            value={loc.name}
+                            onSelect={() => handleSelect(loc.name)}
                             className="flex items-center gap-2"
                             >
                                 <MapPin className="h-5 w-5 text-muted-foreground" />
@@ -117,7 +117,7 @@ export function LocationSearch() {
                                 <Check
                                     className={cn(
                                     'ml-auto h-4 w-4',
-                                    value === loc.name.toLowerCase() ? 'opacity-100' : 'opacity-0'
+                                    value.toLowerCase() === loc.name.toLowerCase() ? 'opacity-100' : 'opacity-0'
                                     )}
                                 />
                             </CommandItem>
