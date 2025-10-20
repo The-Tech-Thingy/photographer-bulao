@@ -33,9 +33,9 @@ const services = [
 ];
 
 const packages = [
-    { id: 'basic', name: 'Basic', price: 2000, description: 'Best for simple needs. Price is per hour.', features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
-    { id: 'standard', name: 'Standard', price: 3000, description: 'Most popular choice. Price is per hour.', features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
-    { id: 'premium', name: 'Premium', price: 5000, description: 'For the highest quality. Price is per hour.', features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
+    { id: 'basic', name: 'Basic', basePrice: 2000, baseHours: 2, perHourExtra: 500, description: 'Best for simple needs.', features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
+    { id: 'standard', name: 'Standard', basePrice: 3000, baseHours: 2, perHourExtra: 1000, description: 'Most popular choice.', features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
+    { id: 'premium', name: 'Premium', basePrice: 5000, baseHours: 2, perHourExtra: 1500, description: 'For the highest quality.', features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
 ]
 
 const timeSlots = [
@@ -44,8 +44,13 @@ const timeSlots = [
 ];
 
 const ADDON_PRICES = {
-    extraPhotographer: 2000,
-    videographer: 3000
+    extraPhotographer: 3000,
+    videographer: 5000,
+    editing: {
+        base: 1000,
+        baseHours: 2,
+        perHourExtra: 200
+    }
 }
 
 export function BookingForm() {
@@ -284,10 +289,12 @@ export function BookingForm() {
                 <Card key={pkg.id} className={`flex flex-col cursor-pointer transition-all ${formData.package === pkg.id ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`} onClick={() => handleChange('package', pkg.id)}>
                     <CardHeader>
                         <CardTitle>{pkg.name}</CardTitle>
-                        <CardDescription className="text-2xl font-bold text-primary">₹{pkg.price}<span className="text-sm font-normal text-muted-foreground">/hr</span></CardDescription>
+                         <CardDescription className="text-2xl font-bold text-primary">
+                            ₹{pkg.basePrice}<span className="text-sm font-normal text-muted-foreground"> for {pkg.baseHours} hrs</span>
+                        </CardDescription>
                     </CardHeader>
                     <CardContent className="flex-grow">
-                        <p className='text-sm text-muted-foreground mb-3'>{pkg.description}</p>
+                        <p className='text-sm text-muted-foreground mb-3'>+ ₹{pkg.perHourExtra}/hr after {pkg.baseHours} hrs</p>
                         <ul className="space-y-2 text-sm">
                         {pkg.features.map((feature, i) => (
                             <li key={i} className="flex items-start gap-2">
@@ -322,7 +329,7 @@ export function BookingForm() {
                             <Users className="inline-block mr-2" /> Extra Photographer
                         </label>
                         <p className="text-sm text-muted-foreground">
-                            Ideal for large events to ensure no moment is missed. (₹{ADDON_PRICES.extraPhotographer} per hour)
+                            Ideal for large events to ensure no moment is missed. (₹{ADDON_PRICES.extraPhotographer})
                         </p>
                     </div>
                 </div>
@@ -333,7 +340,7 @@ export function BookingForm() {
                             <Video className="inline-block mr-2" /> Videographer/Cinematographer
                         </label>
                         <p className="text-sm text-muted-foreground">
-                            Get a stunning cinematic video of your event. (₹{ADDON_PRICES.videographer} per hour)
+                            Get a stunning cinematic video of your event. (₹{ADDON_PRICES.videographer})
                         </p>
                     </div>
                 </div>
@@ -343,16 +350,32 @@ export function BookingForm() {
       case 6:
         const selectedPkg = packages.find(p => p.id === formData.package);
         const duration = parseInt(formData.duration);
-        const packagePrice = selectedPkg ? selectedPkg.price * duration : 0;
         
-        let total = packagePrice;
+        let packagePrice = 0;
+        if (selectedPkg) {
+            packagePrice = selectedPkg.basePrice;
+            if (duration > selectedPkg.baseHours) {
+                packagePrice += (duration - selectedPkg.baseHours) * selectedPkg.perHourExtra;
+            }
+        }
 
+        let editingPrice = 0;
+        if (formData.delivery === 'edited') {
+            editingPrice = ADDON_PRICES.editing.base;
+            if (duration > ADDON_PRICES.editing.baseHours) {
+                editingPrice += (duration - ADDON_PRICES.editing.baseHours) * ADDON_PRICES.editing.perHourExtra;
+            }
+        }
+
+        let addonsPrice = 0;
         if (formData.extraPhotographer) {
-            total += ADDON_PRICES.extraPhotographer * duration;
+            addonsPrice += ADDON_PRICES.extraPhotographer;
         }
         if (formData.videographer) {
-            total += ADDON_PRICES.videographer * duration;
+            addonsPrice += ADDON_PRICES.videographer;
         }
+
+        const total = packagePrice + editingPrice + addonsPrice;
 
         return (
           <>
@@ -382,26 +405,28 @@ export function BookingForm() {
                         <span className="font-semibold">{formData.duration} hour(s)</span>
                     </div>
                     <Separator/>
-                     <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Delivery</span>
-                        <span className="font-semibold capitalize">{formData.delivery} Photos</span>
+                    <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Package ({selectedPkg?.name})</span>
+                        <span className="font-semibold capitalize">₹{packagePrice}</span>
                     </div>
                     <Separator/>
-                    <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Package</span>
-                        <span className="font-semibold capitalize">{selectedPkg?.name} (₹{packagePrice})</span>
+                     <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Photo Delivery ({formData.delivery})</span>
+                        <span className="font-semibold capitalize">{formData.delivery === 'raw' ? 'Included' : `₹${editingPrice}`}</span>
                     </div>
+                    
                      { (formData.extraPhotographer || formData.videographer) && <Separator/> }
+                     
                      { formData.extraPhotographer && (
                         <div className="flex justify-between items-center">
-                            <span className="text-muted-foreground">Extra Photographer</span>
-                            <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer * duration}</span>
+                            <span className="text-muted-foreground">Add-on: Extra Photographer</span>
+                            <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer}</span>
                         </div>
                      )}
                      { formData.videographer && (
                         <div className="flex justify-between items-center">
-                            <span className="text-muted-foreground">Videographer</span>
-                            <span className="font-semibold">₹{ADDON_PRICES.videographer * duration}</span>
+                            <span className="text-muted-foreground">Add-on: Videographer</span>
+                            <span className="font-semibold">₹{ADDON_PRICES.videographer}</span>
                         </div>
                      )}
                      <Separator/>
@@ -514,3 +539,5 @@ export function BookingForm() {
     </Card>
   );
 }
+
+    
