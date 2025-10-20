@@ -39,3 +39,13 @@ export interface Booking {
   package: string;
   status: 'Upcoming' | 'Completed' | 'Cancelled';
 }
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  summary: string;
+  author: string;
+  date: string;
+  imageId: string;
+  content: string;
+}

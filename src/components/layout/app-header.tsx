@@ -22,6 +22,7 @@ import { Badge } from '../ui/badge';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/bookings', label: 'My Bookings' },
+  { href: '/blog', label: 'Blog' },
   { href: '/recommend', label: 'AI Assistant' },
   { href: '/chat', label: 'Chat' },
 ];
