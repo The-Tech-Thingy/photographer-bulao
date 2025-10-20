@@ -2,6 +2,46 @@ import type { BlogPost } from './types';
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'guide-to-on-demand-booking',
+    title: 'Need a Photographer in a Hurry? The Ultimate Guide to On-Demand Booking',
+    summary: 'Ever needed a professional photographer at the last minute? This guide breaks down how on-demand booking services are changing the game, making it faster and easier than ever to find a qualified pro.',
+    author: 'Photographer Bulao',
+    date: '2024-07-29',
+    imageId: 'blog-on-demand',
+    content: `
+      <p>In our fast-paced world, plans can change in an instant. A last-minute event, a surprise celebration, or an urgent business need can suddenly require a professional photographer. In the past, finding a qualified professional on short notice was a stressful scramble of phone calls, portfolio reviews, and crossed fingers. Today, the landscape has changed, thanks to on-demand booking platforms.</p>
+
+      <h2>The Old Way vs. The New Way</h2>
+      <p>Traditionally, hiring a photographer involved a lengthy process:</p>
+      <ul>
+        <li>Searching through directories, social media, or asking for recommendations.</li>
+        <li>Contacting multiple photographers to check their availability.</li>
+        <li>Waiting for responses and quotes.</li>
+        <li>Vetting portfolios and reviews to ensure quality.</li>
+        <li>Negotiating contracts and terms.</li>
+      </ul>
+      <p>This process could take days, if not weeks—a luxury you don't have when time is of the essence. On-demand services like Photographer Bulao streamline this entire workflow into a few simple clicks.</p>
+
+      <h2>How On-Demand Photographer Booking Works</h2>
+      <p>The beauty of an on-demand platform lies in its simplicity and efficiency. We've distilled the process into three easy steps, just like ordering a taxi or your favorite meal:</p>
+      <ol>
+        <li><strong>Select a Service & Location:</strong> Simply choose the type of photography you need (e.g., Corporate Headshots, Private Event) and enter the location. The platform already has a curated network of professionals ready to go.</li>
+        <li><strong>Schedule Your Shoot:</strong> Pick a date and time that works for you. The system automatically finds available, vetted photographers who match your requirements, eliminating the back-and-forth.</li>
+        <li><strong>Get a Pro Assigned, Guaranteed:</strong> Once you confirm your booking, a pre-vetted, professional photographer is assigned to your job. You get the peace of mind of a guaranteed professional without the traditional hassle.</li>
+      </ol>
+
+      <h2>Benefits of Booking On-Demand</h2>
+      <ul>
+        <li><strong>Speed:</strong> Find and book a photographer in minutes, not days.</li>
+        <li><strong>Guaranteed Quality:</strong> Platforms vet their photographers, so you can be confident you're hiring a skilled professional.</li>
+        <li><strong>Transparent Pricing:</strong> See costs upfront based on the service, duration, and any add-ons. No hidden fees.</li>
+        <li><strong>Convenience:</strong> Manage your booking, track your photographer, and receive your photos all in one place.</li>
+      </ul>
+
+      <p>Next time you find yourself needing a photographer in a hurry, don't panic. Embrace the new way of hiring creative professionals. With an on-demand service, you're just a few clicks away from capturing your important moments, beautifully and professionally.</p>
+    `,
+  },
+  {
     slug: 'how-to-prepare-for-your-corporate-headshot',
     title: 'How to Prepare for Your Corporate Headshot',
     summary: 'A great headshot can make a world of difference. Learn how to prepare for your session to ensure you get professional, high-quality photos that make the right impression.',
@@ -107,4 +147,4 @@ export const blogPosts: BlogPost[] = [
       <p>By evaluating your needs against these points, you can make an informed decision and select a photography package that provides the best value and delivers the beautiful photos you envision.</p>
     `,
   },
-];
+].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
