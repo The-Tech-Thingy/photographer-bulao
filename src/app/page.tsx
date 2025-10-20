@@ -28,7 +28,7 @@ const trustedByLogos = [
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
-  const servicesToShow = photographyServices.slice(0, 4);
+  const servicesToShow = photographyServices.slice(0, 8);
 
   return (
     <div className="flex flex-col gap-8 md:gap-16 pb-16">

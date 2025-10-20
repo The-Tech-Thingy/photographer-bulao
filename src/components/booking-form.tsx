@@ -67,18 +67,19 @@ export function BookingForm() {
 
   useEffect(() => {
     const locationFromUrl = searchParams.get('location');
-    if (locationFromUrl) {
-      handleChange('location', locationFromUrl === 'current' ? 'My Current Location' : locationFromUrl);
-      setStep(2);
-    }
     const serviceFromUrl = searchParams.get('service');
+    
     if (serviceFromUrl) {
       handleChange('service', serviceFromUrl);
-      if (!locationFromUrl) {
-          setStep(1); // Stay on location if not provided
-      } else {
-          setStep(3); // Skip to step 3 if both are in URL
-      }
+    }
+
+    if (locationFromUrl) {
+      handleChange('location', locationFromUrl === 'current' ? 'My Current Location' : locationFromUrl);
+      setStep(2); // If location is present, start at step 2 (services)
+    }
+
+    if (locationFromUrl && serviceFromUrl) {
+        setStep(3); // If both are present, skip to step 3
     }
   }, [searchParams]);
 
