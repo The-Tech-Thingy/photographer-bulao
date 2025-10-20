@@ -107,18 +107,17 @@ export default function DashboardPage() {
 
       <section>
         <Tabs defaultValue="profile">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="profile"><UserIcon className="mr-2" />My Profile</TabsTrigger>
             <TabsTrigger value="upcoming"><Calendar className="mr-2"/>Upcoming Bookings</TabsTrigger>
             <TabsTrigger value="history"><CheckCircle className="mr-2"/>Booking History</TabsTrigger>
-            <TabsTrigger value="settings"><Settings className="mr-2"/>Account Settings</TabsTrigger>
           </TabsList>
           
           <TabsContent value="profile">
             <Card>
                 <CardHeader>
                     <CardTitle>Personal Information</CardTitle>
-                    <CardDescription>Update your personal details here.</CardDescription>
+                    <CardDescription>View and edit your personal details.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-center space-x-4">
@@ -126,23 +125,19 @@ export default function DashboardPage() {
                             <AvatarImage src={user.avatar} alt={user.name} />
                             <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
                         </Avatar>
-                        <Button variant="outline"><Edit className="mr-2"/>Change Photo</Button>
-                    </div>
-                     <div className="space-y-2">
-                        <Label htmlFor="name">Full Name</Label>
-                        <Input id="name" defaultValue={user.name} />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="email">Email Address</Label>
-                        <Input id="email" type="email" defaultValue={user.email} />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input id="phone" type="tel" defaultValue={user.phone} />
+                        <div>
+                            <p className="text-xl font-semibold">{user.name}</p>
+                            <p className="text-muted-foreground">{user.email}</p>
+                        </div>
                     </div>
                 </CardContent>
                 <CardContent className="border-t pt-6">
-                     <Button><Save className="mr-2"/>Save Changes</Button>
+                     <Button asChild variant="outline">
+                        <Link href="/settings">
+                            <Settings className="mr-2"/>
+                            Manage Account Settings
+                        </Link>
+                    </Button>
                 </CardContent>
             </Card>
           </TabsContent>
@@ -178,47 +173,6 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </TabsContent>
-
-          <TabsContent value="settings">
-              <Card>
-                <CardHeader>
-                    <CardTitle>Account Settings</CardTitle>
-                    <CardDescription>Manage your notification and security settings.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="space-y-4">
-                        <h3 className="font-semibold flex items-center"><Bell className="mr-2"/>Notifications</h3>
-                        <div className="flex items-center justify-between rounded-lg border p-4">
-                            <div>
-                                <Label htmlFor="email-notifications">Email Notifications</Label>
-                                <p className="text-sm text-muted-foreground">Receive updates on bookings and promotions.</p>
-                            </div>
-                            <Switch id="email-notifications" defaultChecked />
-                        </div>
-                         <div className="flex items-center justify-between rounded-lg border p-4">
-                            <div>
-                                <Label htmlFor="sms-notifications">SMS Notifications</Label>
-                                <p className="text-sm text-muted-foreground">Get reminders for your upcoming shoots.</p>
-                            </div>
-                            <Switch id="sms-notifications" />
-                        </div>
-                    </div>
-                     <div className="space-y-4">
-                        <h3 className="font-semibold flex items-center"><KeySquare className="mr-2"/>Security</h3>
-                         <div className="space-y-2">
-                            <Label htmlFor="current-password">Current Password</Label>
-                            <Input id="current-password" type="password" />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="new-password">New Password</Label>
-                            <Input id="new-password" type="password" />
-                        </div>
-                         <Button>Change Password</Button>
-                    </div>
-                </CardContent>
-              </Card>
-          </TabsContent>
-
         </Tabs>
       </section>
     </div>

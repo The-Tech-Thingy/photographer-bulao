@@ -150,9 +150,13 @@ export function AppHeader() {
                     <DropdownMenuItem asChild>
                       <Link href="/dashboard">Dashboard</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/settings">Settings</Link>
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/settings">Logout</Link>
+                    </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
