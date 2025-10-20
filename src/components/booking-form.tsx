@@ -125,18 +125,12 @@ export function BookingForm() {
     switch (step) {
       case 1:
         return (
-            <>
-                <CardHeader>
-                    <CardTitle>Shoot Location</CardTitle>
-                    <CardDescription>Where do you need the photoshoot to take place?</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="space-y-2">
-                        <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
-                        <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
-                    </div>
-                </CardContent>
-            </>
+            <CardContent className="space-y-6">
+                <div className="space-y-2">
+                    <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
+                    <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
+                </div>
+            </CardContent>
         );
       case 2:
         return (
