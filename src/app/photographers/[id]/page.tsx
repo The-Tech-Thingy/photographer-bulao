@@ -13,7 +13,6 @@ import Link from 'next/link';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 
-// This function is still valid in a client component for static generation
 export async function generateStaticParams() {
   return photographers.map((p) => ({ id: p.id }));
 }
