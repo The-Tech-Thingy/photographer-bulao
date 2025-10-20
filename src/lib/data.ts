@@ -12,7 +12,7 @@ export const photographers: Photographer[] = [
     profileImage: 'profile-1',
     bio: 'Specializing in capturing timeless moments, Jane brings a creative and personal touch to every wedding and event she photographs. With over 10 years of experience, her passion for storytelling shines through her work.',
     specialties: ['Wedding', 'Events', 'Portraits'],
-    portfolio: ['portfolio-1-1', 'portfolio-1-2', 'portfolio-1-3', 'portfolio-1-4'],
+    portfolio: ['portfolio-1-1', 'portfolio-1-2', 'portfolio-1-3', 'portfolio-1-4', 'portfolio-1-5', 'portfolio-1-6'],
     reviews: [
       { id: 1, author: 'Alice', rating: 5, comment: 'Absolutely stunning photos! Jane was a pleasure to work with.', avatar: 'https://picsum.photos/seed/rev1/40/40' },
       { id: 2, author: 'Bob', rating: 5, comment: 'Professional, creative, and delivered beyond our expectations.', avatar: 'https://picsum.photos/seed/rev2/40/40' },
@@ -117,6 +117,7 @@ export const bookings: Booking[] = [
         time: '13:00',
         package: 'Product Shoot',
         status: 'Completed',
+        gallery: ['portfolio-2-2', 'portfolio-2-3', 'portfolio-2-4', 'portfolio-3-1', 'portfolio-3-2']
     },
     {
         id: 'booking-4',
@@ -126,5 +127,19 @@ export const bookings: Booking[] = [
         time: '11:00',
         package: 'Street Style Session',
         status: 'Cancelled',
-    }
-]
+    },
+     {
+        id: 'booking-5',
+        photographerId: 'jane-doe',
+        photographerName: 'Jane Doe',
+        date: '2024-04-22',
+        time: '16:00',
+        package: 'Standard Event',
+        status: 'Completed',
+        gallery: ['portfolio-1-1', 'portfolio-1-2', 'portfolio-1-3', 'portfolio-1-4', 'portfolio-1-5', 'portfolio-1-6']
+    },
+];
+
+export const completedBookingsWithGalleries = bookings.filter(
+    (b) => b.status === 'Completed' && b.gallery && b.gallery.length > 0
+);

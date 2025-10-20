@@ -38,6 +38,7 @@ export interface Booking {
   time: string;
   package: string;
   status: 'Upcoming' | 'Completed' | 'Cancelled';
+  gallery?: string[];
 }
 
 export interface Comment {

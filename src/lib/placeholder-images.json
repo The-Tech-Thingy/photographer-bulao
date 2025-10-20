@@ -38,15 +38,15 @@
     },
     {
       "id": "portfolio-1-2",
-      "description": "A stunning landscape photo.",
-      "imageUrl": "https://images.unsplash.com/photo-1612676239016-41e2c92b8e06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb3VudGFpbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjA4NTg3NTB8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "mountain landscape"
+      "description": "Candid moment at a wedding reception.",
+      "imageUrl": "https://images.unsplash.com/photo-1597855034633-5b8504543787?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3ZWRkaW5nJTIwZGFuY2V8ZW58MHx8fHwxNzYxMzk4ODkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding dance"
     },
     {
       "id": "portfolio-1-3",
-      "description": "A close-up portrait.",
-      "imageUrl": "https://images.unsplash.com/photo-1592621385612-4d7129426394?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MDk0MDg0N3ww&ixlibrb-4.1.0&q=80&w=1080",
-      "imageHint": "woman portrait"
+      "description": "Close up of wedding rings.",
+      "imageUrl": "https://images.unsplash.com/photo-1598435698375-3810a726d364?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3ZWRkaW5nJTIwcmluZ3N8ZW58MHx8fHwxNzYxMzk4OTIyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding rings"
     },
     {
       "id": "portfolio-1-4",
@@ -55,9 +55,21 @@
       "imageHint": "concert crowd"
     },
     {
+      "id": "portfolio-1-5",
+      "description": "Bride getting ready.",
+      "imageUrl": "https://images.unsplash.com/photo-1583016447872-574ab3e48e02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3ZWRkaW5nJTIwZGV0YWlsc3xlbnwwfHx8fDE3NjEzOTg5NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding details"
+    },
+    {
+      "id": "portfolio-1-6",
+      "description": "Happy couple during wedding ceremony.",
+      "imageUrl": "https://images.unsplash.com/photo-1593183994343-45e093555fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3ZWRkaW5nJTIwY2VyZW1vbnl8ZW58MHx8fHwxNzYxMzk4OTc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding ceremony"
+    },
+    {
       "id": "portfolio-2-1",
       "description": "A candid family portrait.",
-      "imageUrl": "https://images.unsplash.com/photo-1683208783648-856f2a6ec12d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYW1pbHklMjBsYXVnaGluZ3xlbnwwfHx8fDE3NjA4OTE3NzZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1683208783648-856f2a6ec12d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYW1pbHklMjBsYXVnaGluZ3xlbnwwfHx8fDE3NjA4OTE3NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "family laughing"
     },
     {
@@ -123,7 +135,7 @@
     {
       "id": "service-food",
       "description": "A delicious gourmet burger.",
-      "imageUrl": "https://images.unsplash.com/photo-1629148462972-98019342a52b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxnb3VybWV0JTIwYnVyZ2VyfGVufDB8fHx8MTc2MDg1ODkzNnww&ixlibrb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1629148462972-98019342a52b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxnb3VybWV0JTIwYnVyZ2VyfGVufDB8fHx8MTc2MDg1ODkzNnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "gourmet burger"
     },
     {
