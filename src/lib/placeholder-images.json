@@ -57,43 +57,43 @@
     {
       "id": "portfolio-2-1",
       "description": "A candid family portrait.",
-      "imageUrl": "https://images.unsplash.com/photo-1683208783648-856f2a6ec12d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYW1pbHklMjBsYXVnaGluZ3xlbnwwfHx8fDE3NjA4OTE3NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1683208783648-856f2a6ec12d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYW1pbHklMjBsYXVnaGluZ3xlbnwwfHx8fDE3NjA4OTE3NzZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "family laughing"
     },
     {
       "id": "portfolio-2-2",
       "description": "Product photography shot.",
-      "imageUrl": "https://images.unsplash.com/photo-1606278235974-43a5fe3d3875?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3YXRjaCUyMGxpZmVzdHlsZXxlbnwwfHx8fDE3NjA5NTEyNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1606278235974-43a5fe3d3875?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3YXRjaCUyMGxpZmVzdHlsZXxlbnwwfHx8fDE3NjA5NTEyNDZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "watch lifestyle"
     },
     {
       "id": "portfolio-2-3",
       "description": "Architectural photography.",
-      "imageUrl": "https://images.unsplash.com/photo-1574848296471-28f79a036f79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBidWlsZGluZ3xlbnwwfHx8fDE3NjA4NDE0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1574848296471-28f79a036f79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBidWlsZGluZ3xlbnwwfHx8fDE3NjA4NDE0NDV8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "modern building"
     },
     {
       "id": "portfolio-2-4",
       "description": "Food photography.",
-      "imageUrl": "https://images.unsplash.com/photo-1610515304527-cb9932040f4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnb3VybWV0JTIwZGlzaHxlbnwwfHx8fDE3NjA4ODEzODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1610515304527-cb9932040f4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnb3VybWV0JTIwZGlzaHxlbnwwfHx8fDE3NjA4ODEzODV8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "gourmet dish"
     },
     {
       "id": "portfolio-3-1",
       "description": "Street photography in a busy city.",
-      "imageUrl": "https://images.unsplash.com/photo-1584696049838-8e692282a2e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaXR5JTIwc3RyZWV0fGVufDB8fHx8MTc2MDg1NjQ1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1584696049838-8e692282a2e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaXR5JTIwc3RyZWV0fGVufDB8fHx8MTc2MDg1NjQ1M3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "city street"
     },
     {
       "id": "portfolio-3-2",
       "description": "Fashion photoshoot.",
-      "imageUrl": "https://images.unsplash.com/photo-1611042553484-d61f84d22784?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYXNoaW9uJTIwbW9kZWx8ZW58MHx8fHwxNzYwODYwMTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1611042553484-d61f84d22784?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYXNoaW9uJTIwbW9kZWx8ZW58MHx8fHwxNzYwODYwMTk5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "fashion model"
     },
     {
       "id": "portfolio-4-1",
       "description": "Corporate headshot.",
-      "imageUrl": "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxidXNpbmVzcyUyMHBlcnNvbnxlbnwwfHx8fDE3NjA4NTE3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxidXNpbmVzcyUyMHBlcnNvbnxlbnwwfHx8fDE3NjA4NTE3ODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "business person"
     },
     {
@@ -105,19 +105,19 @@
     {
       "id": "map-placeholder",
       "description": "A stylized map of a city with pins.",
-      "imageUrl": "https://images.unsplash.com/photo-1603466183710-70b84997a93f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaXR5JTIwbWFwfGVufDB8fHx8MTc2MDg1OTQ0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1603466183710-70b84997a93f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaXR5JTIwbWFwfGVufDB8fHx8MTc2MDg1OTQ0Nnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "city map"
     },
     {
       "id": "service-headshot",
       "description": "A professional corporate headshot.",
-      "imageUrl": "https://images.unsplash.com/photo-1558222218-b7b54eede3f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxidXNpbmVzcyUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MDk1MTI0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558222218-b7b54eede3f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxidXNpbmVzcyUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MDk1MTI0Nnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "business portrait"
     },
     {
       "id": "service-real-estate",
       "description": "A modern apartment interior.",
-      "imageUrl": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjA5NTEyNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjA5NTEyNDZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "apartment interior"
     },
     {
@@ -129,25 +129,25 @@
     {
       "id": "service-event",
       "description": "People celebrating at a party.",
-      "imageUrl": "https://images.unsplash.com/photo-1755704282977-340323fa52df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwYXJ0eSUyMGNlbGVicmF0aW9ufGVufDB8fHx8MTc2MDg5Mzc3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1755704282977-340323fa52df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwYXJ0eSUyMGNlbGVicmF0aW9ufGVufDB8fHx8MTc2MDg5Mzc3NXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "party celebration"
     },
     {
       "id": "service-wedding",
       "description": "A couple on their wedding day.",
-      "imageUrl": "https://images.unsplash.com/photo-1621621667797-e06afc217fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3ZWRkaW5nJTIwY291cGxlfGVufDB8fHx8MTc2MDg5MTgyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1621621667797-e06afc217fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3ZWRkaW5nJTIwY291cGxlfGVufDB8fHx8MTc2MDg5MTgyNXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "wedding couple"
     },
     {
       "id": "service-portraits",
       "description": "A close-up portrait of a person.",
-      "imageUrl": "https://images.unsplash.com/photo-1592621385612-4d7129426394?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MDk0MDg0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1592621385612-4d7129426394?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MDk0MDg0N3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "woman portrait"
     },
     {
       "id": "service-family",
       "description": "A happy family posing for a photo.",
-      "imageUrl": "https://images.unsplash.com/photo-1588352873216-61d174714a6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmYW1pbHklMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA4Nzg2ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1588352873216-61d174714a6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmYW1pbHklMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA4Nzg2ODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "family portrait"
     },
     {
@@ -159,26 +159,32 @@
     {
       "id": "blog-headshots",
       "description": "A person having a professional headshot taken.",
-      "imageUrl": "https://images.unsplash.com/photo-1622281938562-3850ed538d6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjA5NDgyODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1622281938562-3850ed538d6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjA5NDgyODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "professional headshot"
     },
     {
       "id": "blog-wedding",
       "description": "A wedding couple in Mumbai, India.",
-      "imageUrl": "https://images.unsplash.com/photo-1630526720753-aa4e71acf67d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwaW5kaWF8ZW58MHx8fHwxNzYwOTQ4MjM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1630526720753-aa4e71acf67d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwaW5kaWF8ZW58MHx8fHwxNzYwOTQ4MjM1fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "wedding india"
     },
     {
       "id": "blog-packages",
       "description": "A camera lens and photography equipment on a table.",
-      "imageUrl": "https://images.unsplash.com/photo-1601132359931-1378377759a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwaG90b2dyYXBoeSUyMGVxdWlwbWVudHxlbnwwfHx8fDE3NjA5NDgzNDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1601132359931-1378377759a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwaG90b2dyYXBoeSUyMGVxdWlwbWVudHxlbnwwfHx8fDE3NjA5NDgzNDN8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "photography equipment"
     },
     {
       "id": "blog-on-demand",
       "description": "A camera next to a clock, representing speed.",
-      "imageUrl": "https://images.unsplash.com/photo-1526374965328-5f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aW1lJTIwbGFwc2V8ZW58MHx8fHwxNzYxMDI1MjM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1526374965328-5f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aW1lJTIwbGFwc2V8ZW58MHx8fHwxNzYxMDI1MjM4fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "camera clock"
+    },
+    {
+      "id": "blog-beyond-selfie",
+      "description": "A group of friends trying to take a selfie at a crowded party.",
+      "imageUrl": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcm93ZGVkJTIwcGFydHl8ZW58MHx8fHwxNzYxMDI1MjM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "party selfie"
     }
   ]
 }
