@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, Search, Briefcase, Building, Utensils, PartyPopper } from 'lucide-react';
+import { Check, Search, Briefcase, Building, Utensils, PartyPopper, Heart, User, Users, Shirt } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -24,7 +24,11 @@ const iconMap = {
     Briefcase,
     Building,
     Utensils,
-    PartyPopper
+    PartyPopper,
+    Heart,
+    User,
+    Users,
+    Shirt
 }
 
 interface Service {

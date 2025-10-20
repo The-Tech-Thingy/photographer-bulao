@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles, Calendar as CalendarIcon, Video, Users } from 'lucide-react';
+import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles, Calendar as CalendarIcon, Video, Users, Heart, Shirt } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from './ui/separator';
 import { useToast } from '@/hooks/use-toast';
@@ -26,6 +26,10 @@ const services = [
   { name: 'Real Estate', icon: Building },
   { name: 'Food & Menu', icon: Utensils },
   { name: 'Private Events', icon: PartyPopper },
+  { name: 'Wedding', icon: Heart},
+  { name: 'Portraits', icon: User},
+  { name: 'Family', icon: Users},
+  { name: 'Fashion', icon: Shirt},
 ];
 
 const packages = [

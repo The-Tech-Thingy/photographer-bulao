@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
-import { Search, Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award, Camera } from 'lucide-react';
+import { Search, Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award, Camera, Heart, User, Users, Shirt } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { ServiceSearch } from '@/components/service-search';
@@ -12,6 +12,10 @@ const photographyServices = [
   { name: 'Real Estate', icon: 'Building', imageId: 'service-real-estate' },
   { name: 'Food & Menu', icon: 'Utensils', imageId: 'service-food' },
   { name: 'Private Events', icon: 'PartyPopper', imageId: 'service-event' },
+  { name: 'Wedding', icon: 'Heart', imageId: 'service-wedding'},
+  { name: 'Portraits', icon: 'User', imageId: 'service-portraits'},
+  { name: 'Family', icon: 'Users', imageId: 'service-family'},
+  { name: 'Fashion', icon: 'Shirt', imageId: 'service-fashion'},
 ];
 
 const trustedByLogos = [
@@ -24,6 +28,7 @@ const trustedByLogos = [
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
+  const servicesToShow = photographyServices.slice(0, 4);
 
   return (
     <div className="flex flex-col gap-8 md:gap-16 pb-16">
@@ -67,9 +72,9 @@ export default function Home() {
       <section className="container mx-auto px-4 mt-8 md:mt-16">
         <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-6 md:mb-8">Book by Service</h2>
          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {photographyServices.map((service) => {
+          {servicesToShow.map((service) => {
             const serviceImage = PlaceHolderImages.find((img) => img.id === service.imageId);
-            const Icon = { Briefcase, Building, Utensils, PartyPopper }[service.icon as 'Briefcase' | 'Building' | 'Utensils' | 'PartyPopper']
+            const Icon = { Briefcase, Building, Utensils, PartyPopper, Heart, User, Users, Shirt }[service.icon as 'Briefcase' | 'Building' | 'Utensils' | 'PartyPopper' | 'Heart' | 'User' | 'Users' | 'Shirt']
             return (
               <Link href="/book" key={service.name}>
                 <Card className="overflow-hidden group hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 border-0 rounded-lg">
