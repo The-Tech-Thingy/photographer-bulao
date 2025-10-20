@@ -15,19 +15,19 @@
     {
       "id": "profile-2",
       "description": "Profile picture for photographer John Smith.",
-      "imageUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA5MjE0MDR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA5MjE0MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "man portrait"
     },
     {
       "id": "profile-3",
       "description": "Profile picture for photographer Alex Ray.",
-      "imageUrl": "https://images.unsplash.com/photo-1715483282597-fb57c8b0c28f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwY2l0eXxlbnwwfHx8fDE3NjA4NTkwODV8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1715483282597-fb57c8b0c28f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwY2l0eXxlbnwwfHx8fDE3NjA4NTkwODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person city"
     },
     {
       "id": "profile-4",
       "description": "Profile picture for photographer Priya Singh.",
-      "imageUrl": "https://images.unsplash.com/photo-1495395226200-8fbf6b720b8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMG5hdHVyZXxlbnwwfHx8fDE3NjA5NDIzNTZ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1495395226200-8fbf6b720b8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMG5hdHVyZXxlbnwwfHx8fDE3NjA5NDIzNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "woman nature"
     },
     {
@@ -39,7 +39,7 @@
     {
       "id": "portfolio-1-2",
       "description": "A stunning landscape photo.",
-      "imageUrl": "https://images.unsplash.com/photo-1612676239016-41e2c92b8e06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb3VudGFpbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjA4NTg3NTB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1612676239016-41e2c92b8e06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb3VudGFpbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjA4NTg3NTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mountain landscape"
     },
     {
@@ -191,6 +191,12 @@
       "description": "A woman posing confidently in a city street.",
       "imageUrl": "https://images.unsplash.com/photo-1624561172888-ac93c690e10c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb25maWRlbnQlMjBwb3NlfGVufDB8fHx8MTc2MTAzMTg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "confident pose"
+    },
+    {
+      "id": "blog-brand-shots",
+      "description": "A creative flatlay of branding materials and a camera.",
+      "imageUrl": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjcmVhdGl2ZSUyMGJ1c2luZXNzfGVufDB8fHx8MTc2MTAzMTg1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative business"
     }
   ]
 }
