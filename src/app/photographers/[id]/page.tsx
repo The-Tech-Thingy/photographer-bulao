@@ -36,8 +36,13 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
                 </Avatar>
               )}
               <CardTitle className="text-2xl mt-4">{photographer.name}</CardTitle>
-               <CardDescription>
-                {photographer.reviewCount} reviews
+               <CardDescription className="flex items-center gap-2">
+                <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                        <Star key={i} className={`h-4 w-4 ${i < Math.round(photographer.rating) ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`} />
+                    ))}
+                </div>
+                <span>({photographer.reviewCount} reviews)</span>
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
@@ -68,7 +73,7 @@ export default function PhotographerProfilePage({ params }: { params: { id: stri
                       <p className="font-semibold">{review.author}</p>
                       <div className="flex items-center">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`h-4 w-4 ${i < review.rating ? 'text-primary fill-primary' : 'text-muted-foreground'}`} />
+                          <Star key={i} className={`h-4 w-4 ${i < review.rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`} />
                         ))}
                       </div>
                     </div>
