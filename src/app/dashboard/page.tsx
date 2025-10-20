@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/table';
 import { bookings } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { Calendar, CheckCircle, DollarSign, Edit, Save, User as UserIcon, Settings, Bell, KeySquare } from "lucide-react"
+import { Calendar, CheckCircle, Edit, Save, User as UserIcon, Settings, Bell, KeySquare } from "lucide-react"
 import Link from "next/link"
 
 export default function DashboardPage() {
@@ -82,7 +82,7 @@ export default function DashboardPage() {
         <p className="text-muted-foreground">Welcome back, {user.name}!</p>
       </header>
 
-      <section className="grid gap-4 md:grid-cols-3 mb-8">
+      <section className="grid gap-4 md:grid-cols-2 mb-8">
         <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Upcoming Bookings</CardTitle>
@@ -101,16 +101,6 @@ export default function DashboardPage() {
             <CardContent>
                 <div className="text-2xl font-bold">{pastBookings.filter(b => b.status === 'Completed').length}</div>
                  <p className="text-xs text-muted-foreground">memories captured</p>
-            </CardContent>
-        </Card>
-        <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-                <div className="text-2xl font-bold">₹15,750</div>
-                <p className="text-xs text-muted-foreground">across all bookings</p>
             </CardContent>
         </Card>
       </section>
