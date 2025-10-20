@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Input } from '@/components/ui/input';
-import { Search, Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award, Camera, Heart, User, Users, Shirt } from 'lucide-react';
+import { Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award, Camera, Heart, User, Users, Shirt } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
-import { ServiceSearch } from '@/components/service-search';
+import { LocationSearch } from '@/components/location-search';
 
 const photographyServices = [
   { name: 'Corporate Headshots', icon: 'Briefcase', imageId: 'service-headshot' },
@@ -52,7 +51,7 @@ export default function Home() {
             Book a service, and we'll assign a pre-vetted professional photographer for your shoot. Simple as that.
           </p>
           <div className="mt-6 md:mt-8 w-full max-w-md md:max-w-xl flex flex-col sm:flex-row gap-2 items-center">
-            <ServiceSearch services={photographyServices} />
+            <LocationSearch />
             <Link href="/book" passHref>
                  <Button size="lg" className="h-12 md:h-14 rounded-full px-8 w-full sm:w-auto font-bold text-base">Book Now</Button>
             </Link>
