@@ -74,7 +74,11 @@ export function BookingForm() {
     const serviceFromUrl = searchParams.get('service');
     if (serviceFromUrl) {
       handleChange('service', serviceFromUrl);
-      setStep(3); // Skip to step 3 if service is in URL
+      if (!locationFromUrl) {
+          setStep(1); // Stay on location if not provided
+      } else {
+          setStep(3); // Skip to step 3 if both are in URL
+      }
     }
   }, [searchParams]);
 
@@ -136,6 +140,10 @@ export function BookingForm() {
       case 2:
         return (
             <Tabs defaultValue="list" className="w-full">
+                <CardHeader>
+                    <CardTitle>Select a Service</CardTitle>
+                    <CardDescription>What type of photoshoot are you looking for?</CardDescription>
+                </CardHeader>
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="list">Select a Service</TabsTrigger>
                     <TabsTrigger value="ai">Use AI Assistant</TabsTrigger>
@@ -475,10 +483,12 @@ export function BookingForm() {
       <CardHeader>
         <Progress value={progress} className="w-full h-2 mb-4" />
         {step < 7 && (
-            <>
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
-            </>
+             (step !== 2) && (
+             <>
+                 <CardTitle>{title}</CardTitle>
+                 <CardDescription>{description}</CardDescription>
+             </>
+             )
         )}
       </CardHeader>
       {renderStep()}
