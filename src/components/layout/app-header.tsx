@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, User, Briefcase } from 'lucide-react';
+import { Menu, User, Briefcase, Bell, CheckCheck, Tag } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuGroup,
 } from '@/components/ui/dropdown-menu';
+import { Badge } from '../ui/badge';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -86,15 +88,55 @@ export function AppHeader() {
           </SheetContent>
         </Sheet>
 
-        <div className="hidden md:flex flex-1 items-center justify-end space-x-4">
+        <div className="hidden md:flex flex-1 items-center justify-end space-x-2">
             <NavLinks />
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
                 <Link href="/book" passHref>
                     <Button>
                         <Briefcase className="mr-2 h-4 w-4"/>
                         Book Now
                     </Button>
                 </Link>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className='relative'>
+                        <Bell className="h-5 w-5" />
+                        <Badge variant="destructive" className="absolute -top-1 -right-1 h-4 w-4 justify-center p-0 text-xs">2</Badge>
+                        <span className="sr-only">Notifications</span>
+                    </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-80">
+                        <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuGroup>
+                            <DropdownMenuItem className="flex items-start gap-3">
+                                <CheckCheck className="text-green-500 mt-1"/>
+                                <div>
+                                    <p className="font-semibold">Booking Confirmed</p>
+                                    <p className="text-xs text-muted-foreground">Your shoot with Jane Doe is confirmed for Aug 15.</p>
+                                </div>
+                            </DropdownMenuItem>
+                             <DropdownMenuItem className="flex items-start gap-3">
+                                <Tag className="text-primary mt-1"/>
+                                <div>
+                                    <p className="font-semibold">Special Offer!</p>
+                                    <p className="text-xs text-muted-foreground">Get 20% off your next event photoshoot.</p>
+                                </div>
+                            </DropdownMenuItem>
+                             <DropdownMenuItem className="flex items-start gap-3">
+                                <User className="text-blue-500 mt-1"/>
+                                <div>
+                                    <p className="font-semibold">Profile Updated</p>
+                                    <p className="text-xs text-muted-foreground">You successfully changed your password.</p>
+                                </div>
+                            </DropdownMenuItem>
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="justify-center text-sm text-primary hover:!text-primary">
+                            View all notifications
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon">
