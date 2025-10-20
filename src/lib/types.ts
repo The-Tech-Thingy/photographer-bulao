@@ -40,6 +40,14 @@ export interface Booking {
   status: 'Upcoming' | 'Completed' | 'Cancelled';
 }
 
+export interface Comment {
+  id: number;
+  author: string;
+  avatar: string;
+  date: string;
+  text: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -48,4 +56,5 @@ export interface BlogPost {
   date: string;
   imageId: string;
   content: string;
+  comments: Comment[];
 }

@@ -31,6 +31,13 @@ export const blogPosts: BlogPost[] = [
       <h2>Stop Searching, Start Booking</h2>
       <p>Your business is too important for mediocre photos. Ditch the endless scrolling and vetting process. With Photographer Bulao, you just state your need, and we deliver the expert. It’s professional photography, on-demand, designed for the speed of modern business. Give your brand the visual upgrade it deserves.</p>
     `,
+    comments: [
+      { id: 1, author: 'Rohan Mehta', avatar: 'https://picsum.photos/seed/rohan/40/40', date: '2024-08-01', text: 'This is exactly what I needed to read. The distinction between brand shots and headshots is so clear now. Time to upgrade our website!' },
+      { id: 2, author: 'Priya Sharma', avatar: 'https://picsum.photos/seed/priya/40/40', date: '2024-08-01', text: 'Love the pickle company example, haha! It really puts into perspective how important tailored photography is. Great article.' },
+      { id: 3, author: 'Amit Patel', avatar: 'https://picsum.photos/seed/amit/40/40', date: '2024-08-02', text: 'The AI assistant sounds like a game-changer. I always struggle to articulate what I want, so that could be super helpful.' },
+      { id: 4, author: 'Sunita Rao', avatar: 'https://picsum.photos/seed/sunita/40/40', date: '2024-08-03', text: 'Finally, an article that gets it. Stock photos are the worst. Booking a session for my team right now.' },
+      { id: 5, author: 'Vikram Singh', avatar: 'https://picsum.photos/seed/vikram/40/40', date: '2024-08-04', text: 'Helpful breakdown. I never thought about food photography as a "technical wizard" job, but it makes total sense.' },
+    ],
   },
   {
     slug: 'beyond-the-selfie-why-you-need-a-pro',
@@ -64,6 +71,14 @@ export const blogPosts: BlogPost[] = [
       <h2>The Verdict: Your Memories Are Worth More Than a Gigabyte of Blurry Selfies</h2>
       <p>Your next event isn't just another day. It's a collection of moments that you'll want to look back on for years. Don't trust those memories to a series of awkward arm-angle selfies and photos where your Uncle Bob is a mysterious blur. Hire a professional. Let them capture the story, the emotion, and the magic of your event. Your future self, flipping through a stunning album of memories (that you're actually in!), will thank you.</p>
     `,
+    comments: [
+      { id: 1, author: 'Anjali Desai', avatar: 'https://picsum.photos/seed/anjali/40/40', date: '2024-07-31', text: 'The "Awkward Arm of Doom" is so real! I felt this in my soul. Hiring a pro for my next birthday for sure.' },
+      { id: 2, author: 'Karan Kapoor', avatar: 'https://picsum.photos/seed/karan/40/40', date: '2024-07-31', text: 'This is hilarious and so true. I was "the missing person" at my own engagement party. Never again.' },
+      { id: 3, author: 'Sneha Reddy', avatar: 'https://picsum.photos/seed/sneha/40/40', date: '2024-08-01', text: 'I never thought about the lighting issue, but it makes so much sense. All my party pics look like they were taken in a dungeon.' },
+      { id: 4, author: 'Rajesh Kumar', avatar: 'https://picsum.photos/seed/rajesh/40/40', date: '2024-08-02', text: 'Great points. It\'s not just about the photos, it\'s about being present at your own event. That\'s a huge plus.' },
+      { id: 5, author: 'Deepa Iyer', avatar: 'https://picsum.photos/seed/deepa/40/40', date: '2024-08-02', text: 'Love the "Cape of Camera Straps" image! These photographers are truly heroes.' },
+      { id: 6, author: 'Arjun Verma', avatar: 'https://picsum.photos/seed/arjun/40/40', date: '2024-08-03', text: 'The part about making everyone look good is key. My friend got a pro for his sangeet and everyone looked incredible.' },
+    ],
   },
   {
     slug: 'guide-to-on-demand-booking',
@@ -104,6 +119,13 @@ export const blogPosts: BlogPost[] = [
 
       <p>So, next time you're in a photographic bind, take a deep breath and step away from the panic button. The on-demand revolution is here. With a few clicks, you're on your way to capturing your important moments beautifully and stress-free. Now go on, plan that last-minute thing. We've got your back.</p>
     `,
+    comments: [
+      { id: 1, author: 'Meera Krishnan', avatar: 'https://picsum.photos/seed/meera/40/40', date: '2024-07-30', text: 'The "bad old days" are so accurate. I once spent a week trying to book a photographer for a small event. This service is a lifesaver.' },
+      { id: 2, author: 'Siddharth Roy', avatar: 'https://picsum.photos/seed/sid/40/40', date: '2024-07-30', text: 'Love the pizza analogy! It really makes the service feel accessible and easy, which it is.' },
+      { id: 3, author: 'Nisha Gupta', avatar: 'https://picsum.photos/seed/nisha/40/40', date: '2024-07-31', text: 'Quality control is a big one for me. Knowing the photographers are already vetted saves so much time and anxiety.' },
+      { id: 4, author: 'Aditya Chopra', avatar: 'https://picsum.photos/seed/aditya/40/40', date: '2024-08-01', text: 'Needed a photographer for a last-minute product launch, and this was incredibly fast. Highly recommend.' },
+      { id: 5, author: 'Fatima Khan', avatar: 'https://picsum.photos/seed/fatima/40/40', date: '2024-08-01', text: 'Transparent pricing is a huge plus. No one likes hidden costs.' },
+    ],
   },
   {
     slug: 'how-to-prepare-for-your-corporate-headshot',
@@ -140,6 +162,13 @@ export const blogPosts: BlogPost[] = [
       
       <p>Follow these tips, and you'll walk away with a headshot that's less "deer in headlights" and more "CEO in the making." You got this!</p>
     `,
+    comments: [
+      { id: 1, author: 'Aisha Khan', avatar: 'https://picsum.photos/seed/aisha/40/40', date: '2024-07-29', text: 'This is so helpful. The tip about getting a haircut a week before is genius. I always make the mistake of going the day before.' },
+      { id: 2, author: 'Ravi Verma', avatar: 'https://picsum.photos/seed/ravi/40/40', date: '2024-07-29', text: 'The "competent human" face practice made me laugh. Going to try that. Thanks for the solid advice!' },
+      { id: 3, author: 'Pooja Agarwal', avatar: 'https://picsum.photos/seed/pooja/40/40', date: '2024-07-30', text: 'Matte powder is a lifesaver! I never thought about that for headshots, but it makes so much sense with the bright lights.' },
+      { id: 4, author: 'Sanjay Reddy', avatar: 'https://picsum.photos/seed/sanjay/40/40', date: '2024-07-30', text: 'Good point on solid colors. My last headshot was in a patterned shirt, and it\'s so busy looking. Time for a retake.' },
+      { id: 5, author: 'Divya Kumar', avatar: 'https://picsum.photos/seed/divya/40/40', date: '2024-08-01', text: 'Great article! The tone is so approachable and the advice is practical. Feeling much more prepared for my shoot now.' },
+    ],
   },
   {
     slug: 'posing-101-look-natural-in-photos',
@@ -190,6 +219,14 @@ export const blogPosts: BlogPost[] = [
 
       <p>So there you have it. No more dreading the camera. With these simple tricks, you’re ready to step in front of the lens with confidence. Now go out there and get some photos you'll actually want to share!</p>
     `,
+    comments: [
+      { id: 1, author: 'Shilpa Shetty', avatar: 'https://picsum.photos/seed/shilpa/40/40', date: '2024-07-28', text: 'I always wondered what to do with my hands! Giving them a "job" is such a simple but brilliant idea. Thank you!' },
+      { id: 2, author: 'Rahul Khanna', avatar: 'https://picsum.photos/seed/rahul/40/40', date: '2024-07-28', text: 'The fake laugh trick actually works. I tried it in the mirror and ended up actually laughing at myself. Genius.' },
+      { id: 3, author: 'Aarav Kumar', avatar: 'https://picsum.photos/seed/aarav/40/40', date: '2024-07-29', text: 'The "S" curve is a game changer. I look so much better in photos when I remember to do that. Great summary of essential tips.' },
+      { id: 4, author: 'Ishita Shah', avatar: 'https://picsum.photos/seed/ishita/40/40', date: '2024-07-29', text: 'Movement is key! My best photos are always the ones where I\'m not trying to hold a pose. This is a great reminder.' },
+      { id: 5, author: 'Kabir Bedi', avatar: 'https://picsum.photos/seed/kabir/40/40', date: '2024-07-30', text: 'Excellent advice. Connecting with the photographer is so important. It changes the whole vibe of the shoot.' },
+      { id: 6, author: 'Zoya Akhtar', avatar: 'https://picsum.photos/seed/zoya/40/40', date: '2024-07-31', text: 'The marionette posture tip is so good! It immediately makes me feel more graceful. Love these practical tips.' },
+    ],
   },
   {
     slug: '5-tips-for-stunning-wedding-photos-in-mumbai',
@@ -218,6 +255,13 @@ export const blogPosts: BlogPost[] = [
 
       <p>Embrace the beautiful madness of a Mumbai wedding, follow these tips, and you’ll walk away with a collection of photos as vibrant, dynamic, and unforgettable as the city itself.</p>
     `,
+    comments: [
+      { id: 1, author: 'Neha Parekh', avatar: 'https://picsum.photos/seed/neha/40/40', date: '2024-07-26', text: 'The traffic tip is SO real. We budgeted an extra hour for our wedding travel in Mumbai and we needed every second of it. Great advice!' },
+      { id: 2, author: 'Vivek Sharma', avatar: 'https://picsum.photos/seed/vivek/40/40', date: '2024-07-26', text: 'Golden hour at Marine Drive sounds like a dream. Wish I had thought of that for my pre-wedding shoot.' },
+      { id: 3, author: 'Alia Bhatt', avatar: 'https://picsum.photos/seed/alia/40/40', date: '2024-07-27', text: 'The "photo-captain" is a brilliant idea! It would have saved so much confusion trying to round up family members for group shots.' },
+      { id: 4, author: 'Ranbir Kapoor', avatar: 'https://picsum.photos/seed/ranbir/40/40', date: '2024-07-27', text: 'Trusting the photographer is key. Some of our best shots were ones we didn\'t even plan for. Let the artists do their thing!' },
+      { id: 5, author: 'Simran Singh', avatar: 'https://picsum.photos/seed/simran/40/40', date: '2024-07-28', text: 'This is a fantastic guide for any Mumbai couple. Practical, realistic, and so, so true. Sharing this with my friend who is getting married.' },
+    ],
   },
   {
     slug: 'choosing-the-right-photography-package',
@@ -261,5 +305,12 @@ export const blogPosts: BlogPost[] = [
       </ul>
       <p>By thinking about your needs this way, you can confidently choose a package that fits your budget and gives you exactly what you're looking for. Happy booking!</p>
     `,
+    comments: [
+      { id: 1, author: 'Manish Malhotra', avatar: 'https://picsum.photos/seed/manish/40/40', date: '2024-07-23', text: 'The "Must-Haves" vs. "Nice-to-Haves" is a great way to approach this. It really helps clarify your priorities before you get distracted by fancy add-ons.' },
+      { id: 2, author: 'Anamika Khanna', avatar: 'https://picsum.photos/seed/anamika/40/40', date: '2024-07-23', text: 'This is super helpful. I always get overwhelmed by the options. The duration equation makes it much easier to decide.' },
+      { id: 3, author: 'Sabyasachi Mukherjee', avatar: 'https://picsum.photos/seed/sabyasachi/40/40', date: '2024-07-24', text: 'Good point about business shoots being an investment. The quality of the photos directly impacts brand perception.' },
+      { id: 4, author: 'Ritu Kumar', avatar: 'https://picsum.photos/seed/ritu/40/40', date: '2024-07-24', text: 'I agree, for a wedding, go premium. You can\'t recapture those moments. Worth every penny.' },
+      { id: 5, author: 'Tarun Tahiliani', avatar: 'https://picsum.photos/seed/tarun/40/40', date: '2024-07-25', text: 'A very clear and concise guide. I wish I had this when I was planning my daughter\'s birthday party. Would have saved me a lot of time.' },
+    ],
   },
 ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

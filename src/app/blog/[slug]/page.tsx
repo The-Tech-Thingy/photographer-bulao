@@ -1,24 +1,69 @@
+'use client';
+
+import { use, useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/lib/blog-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
-import { Calendar, User } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Calendar, User, Twitter, Facebook, Linkedin, Link as LinkIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/hooks/use-toast';
 
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
+  const params = use(paramsPromise);
   const post = blogPosts.find((p) => p.slug === params.slug);
+  const [postUrl, setPostUrl] = useState('');
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setPostUrl(window.location.href);
+    }
+  }, []);
 
   if (!post) {
     notFound();
   }
 
   const postImage = PlaceHolderImages.find((img) => img.id === post.imageId);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(postUrl);
+    toast({
+      title: "Link Copied!",
+      description: "The link to this blog post has been copied to your clipboard.",
+    });
+  }
+
+  const SocialShare = ({ url, title }: { url: string; title: string }) => (
+    <div className="flex items-center gap-2">
+      <span className="text-sm font-medium text-muted-foreground">Share:</span>
+      <Button variant="outline" size="icon" asChild>
+        <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer">
+          <Twitter className="h-4 w-4" />
+        </a>
+      </Button>
+      <Button variant="outline" size="icon" asChild>
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+          <Facebook className="h-4 w-4" />
+        </a>
+      </Button>
+       <Button variant="outline" size="icon" asChild>
+        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer">
+          <Linkedin className="h-4 w-4" />
+        </a>
+      </Button>
+      <Button variant="outline" size="icon" onClick={handleCopyLink}>
+        <LinkIcon className="h-4 w-4" />
+      </Button>
+    </div>
+  );
 
   return (
     <article className="container mx-auto max-w-3xl px-4 py-8 md:py-12">
@@ -61,6 +106,54 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                    prose-li:marker:text-primary"
         dangerouslySetInnerHTML={{ __html: post.content }} 
       />
+
+      <Separator className="my-8" />
+
+      <div className="flex justify-center">
+        <SocialShare url={postUrl} title={post.title} />
+      </div>
+
+      <Separator className="my-8" />
+
+      {/* Comments Section */}
+      <div className="space-y-8">
+        <h2 className="text-2xl font-bold font-headline">{post.comments.length} Response(s)</h2>
+        
+        {/* Comment Form */}
+        <div className="p-6 border rounded-lg">
+          <h3 className="text-lg font-semibold mb-4">Leave a Comment</h3>
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="Your Name" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="comment">Comment</Label>
+              <Textarea id="comment" placeholder="What are your thoughts?" rows={4} />
+            </div>
+            <Button>Submit Comment</Button>
+          </form>
+        </div>
+
+        {/* Existing Comments */}
+        <div className="space-y-6">
+          {post.comments.map((comment) => (
+            <div key={comment.id} className="flex gap-4">
+              <Avatar>
+                <AvatarImage src={comment.avatar} alt={comment.author} />
+                <AvatarFallback>{comment.author.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold">{comment.author}</p>
+                  <p className="text-xs text-muted-foreground">{new Date(comment.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                </div>
+                <p className="text-muted-foreground mt-1 text-sm">{comment.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </article>
   );
 }
