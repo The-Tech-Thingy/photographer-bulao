@@ -43,7 +43,7 @@ export function ServiceSearch() {
   const searchParams = useSearchParams();
 
   const handleSelect = (currentValue: string) => {
-    const serviceName = currentValue === value ? '' : currentValue;
+    const serviceName = currentValue.toLowerCase() === value ? '' : currentValue;
     setValue(serviceName);
     setOpen(false);
 

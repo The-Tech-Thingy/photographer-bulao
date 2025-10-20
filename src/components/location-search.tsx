@@ -40,7 +40,7 @@ export function LocationSearch() {
   const { toast } = useToast();
 
   const handleSelect = (currentValue: string) => {
-    const locationName = currentValue === value ? '' : currentValue;
+    const locationName = currentValue.toLowerCase() === value ? '' : currentValue;
     setValue(locationName);
     setOpen(false);
     if (locationName) {
@@ -109,7 +109,7 @@ export function LocationSearch() {
                             <CommandItem
                             key={loc.name}
                             value={loc.name}
-                            onSelect={() => handleSelect(loc.name)}
+                            onSelect={handleSelect}
                             className="flex items-center gap-2"
                             >
                                 <MapPin className="h-5 w-5 text-muted-foreground" />
