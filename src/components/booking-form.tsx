@@ -69,7 +69,7 @@ export function BookingForm() {
     const serviceFromUrl = searchParams.get('service');
     if (serviceFromUrl) {
       handleChange('service', serviceFromUrl);
-      setStep(2);
+      setStep(3); // Skip to step 3 if service is in URL
     }
   }, [searchParams]);
 
@@ -109,11 +109,26 @@ export function BookingForm() {
     nextStep();
   }
 
-  const progress = (step / 6) * 100;
+  const progress = (step / 7) * 100;
 
   const renderStep = () => {
     switch (step) {
       case 1:
+        return (
+            <>
+                <CardHeader>
+                    <CardTitle>Shoot Location</CardTitle>
+                    <CardDescription>Where do you need the photoshoot to take place?</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="space-y-2">
+                        <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
+                        <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
+                    </div>
+                </CardContent>
+            </>
+        );
+      case 2:
         return (
             <Tabs defaultValue="list" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
@@ -170,18 +185,14 @@ export function BookingForm() {
                 </TabsContent>
             </Tabs>
         );
-      case 2:
+      case 3:
         return (
             <>
                 <CardHeader>
                     <CardTitle>Shoot Details</CardTitle>
-                    <CardDescription>Where and when will the photoshoot take place?</CardDescription>
+                    <CardDescription>When do you need the photoshoot to take place?</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                    <div className="space-y-2">
-                        <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
-                        <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
-                    </div>
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <Label htmlFor="date"><CalendarIcon className="inline-block mr-2"/>Date</Label>
@@ -253,7 +264,7 @@ export function BookingForm() {
                 </CardContent>
             </>
         );
-       case 3:
+       case 4:
         return (
           <>
             <CardHeader>
@@ -288,7 +299,7 @@ export function BookingForm() {
             </CardContent>
           </>
         );
-    case 4:
+    case 5:
         return (
             <>
             <CardHeader>
@@ -321,7 +332,7 @@ export function BookingForm() {
             </CardContent>
             </>
         );
-      case 5:
+      case 6:
         const selectedPkg = packages.find(p => p.id === formData.package);
         const duration = parseInt(formData.duration);
         const packagePrice = selectedPkg ? selectedPkg.price * duration : 0;
@@ -399,7 +410,7 @@ export function BookingForm() {
             </CardContent>
           </>
         );
-        case 6:
+        case 7:
             return (
                 <div className='flex flex-col items-center text-center p-8'>
                     <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
@@ -433,35 +444,56 @@ export function BookingForm() {
     }
   };
 
+  const getStepTitle = () => {
+    switch(step) {
+        case 1:
+            return { title: 'Shoot Location', description: 'Where do you need the photoshoot to take place?' };
+        case 2:
+            return { title: 'Select a Service', description: 'What type of photoshoot are you looking for?' };
+        case 3:
+            return { title: 'Shoot Details', description: 'When do you need the photoshoot to take place?' };
+        case 4:
+            return { title: 'Select a Package', description: 'Choose a package that fits your needs.' };
+        case 5:
+            return { title: 'Add-on Services', description: 'Enhance your photoshoot experience.' };
+        case 6:
+            return { title: 'Confirm Booking', description: 'Review your details and confirm.' };
+        default:
+            return { title: '', description: '' };
+    }
+  }
+
+  const { title, description } = getStepTitle();
+
   return (
     <Card className="w-full">
       <CardHeader>
         <Progress value={progress} className="w-full h-2 mb-4" />
-        {step === 1 && (
+        {step < 7 && (
             <>
-                <CardTitle>Select a Service</CardTitle>
-                <CardDescription>What type of photoshoot are you looking for?</CardDescription>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
             </>
         )}
       </CardHeader>
       {renderStep()}
       <CardFooter className="flex justify-between mt-6">
-        {step > 1 && step < 6 && (
+        {step > 1 && step < 7 && (
           <Button variant="outline" onClick={prevStep}>
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
         )}
-        {step > 1 && step < 5 && (
-            <Button onClick={nextStep} disabled={ (step === 2 && (!formData.location || !formData.date || !formData.time)) }>
+        {(step < 6 && step !== 2) && (
+            <Button onClick={nextStep} disabled={ (step === 1 && !formData.location) || (step === 3 && (!formData.date || !formData.time)) }>
                 Next
             </Button>
         )}
-        {step === 5 && (
+         {step === 6 && (
             <Button className='w-full' size="lg" onClick={handleConfirmBooking}>
                 <CreditCard className="mr-2 h-4 w-4" /> Pay & Confirm Booking
             </Button>
         )}
-        {step === 6 && (
+        {step === 7 && (
             <div className='w-full flex justify-center'>
                 <Button onClick={() => window.location.href = '/bookings'}>
                     Go to My Bookings
