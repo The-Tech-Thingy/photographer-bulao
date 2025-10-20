@@ -66,6 +66,11 @@ export function BookingForm() {
   const { toast } = useToast();
 
   useEffect(() => {
+    const locationFromUrl = searchParams.get('location');
+    if (locationFromUrl) {
+      handleChange('location', locationFromUrl === 'current' ? 'My Current Location' : locationFromUrl);
+      setStep(2);
+    }
     const serviceFromUrl = searchParams.get('service');
     if (serviceFromUrl) {
       handleChange('service', serviceFromUrl);

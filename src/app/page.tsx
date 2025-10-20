@@ -5,6 +5,7 @@ import { Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award, Camer
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { LocationSearch } from '@/components/location-search';
+import { ServiceSearch } from '@/components/service-search';
 
 const photographyServices = [
   { name: 'Corporate Headshots', icon: 'Briefcase', imageId: 'service-headshot' },
@@ -50,8 +51,9 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-base md:text-xl text-muted-foreground">
             Book a service, and we'll assign a pre-vetted professional photographer for your shoot. Simple as that.
           </p>
-          <div className="mt-6 md:mt-8 w-full max-w-md md:max-w-xl flex flex-col sm:flex-row gap-2 items-center">
+          <div className="mt-6 md:mt-8 w-full max-w-2xl flex flex-col sm:flex-row gap-2 items-center">
             <LocationSearch />
+            <ServiceSearch />
             <Link href="/book" passHref>
                  <Button size="lg" className="h-12 md:h-14 rounded-full px-8 w-full sm:w-auto font-bold text-base">Book Now</Button>
             </Link>
@@ -75,7 +77,7 @@ export default function Home() {
             const serviceImage = PlaceHolderImages.find((img) => img.id === service.imageId);
             const Icon = { Briefcase, Building, Utensils, PartyPopper, Heart, User, Users, Shirt }[service.icon as 'Briefcase' | 'Building' | 'Utensils' | 'PartyPopper' | 'Heart' | 'User' | 'Users' | 'Shirt']
             return (
-              <Link href="/book" key={service.name}>
+              <Link href={`/book?service=${encodeURIComponent(service.name)}`} key={service.name}>
                 <Card className="overflow-hidden group hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 border-0 rounded-lg">
                   <CardContent className="p-0 relative">
                     {serviceImage && (
