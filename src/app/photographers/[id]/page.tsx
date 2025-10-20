@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import { photographers } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { notFound } from 'next/navigation';
@@ -13,7 +13,8 @@ import Link from 'next/link';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 
-export default function PhotographerProfilePage({ params }: { params: { id: string } }) {
+export default function PhotographerProfilePage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = use(paramsPromise);
   const photographer = photographers.find((p) => p.id === params.id);
   const [newRating, setNewRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
