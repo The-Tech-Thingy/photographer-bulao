@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="bg-muted py-12 md:py-20" aria-labelledby="how-it-works-heading">
+      <section className="bg-muted py-12 md:py-20 mt-16" aria-labelledby="how-it-works-heading">
         <div className="container mx-auto px-4 text-center">
             <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-bold font-headline">The Uber for Photographers</h2>
              <p className="text-muted-foreground text-center mt-2 mb-8 max-w-2xl mx-auto">Get stunning photos in just a few clicks. A guaranteed professional photographer will be assigned for your work.</p>
@@ -131,7 +131,6 @@ export default function Home() {
             </div>
         </div>
       </section>
-
     </>
   );
 }

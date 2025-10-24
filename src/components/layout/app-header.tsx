@@ -52,7 +52,7 @@ export function AppHeader() {
       <div className="container flex h-16 items-center">
         <div className="mr-auto flex items-center gap-4">
            <Link href="/" className="flex items-center space-x-2">
-            <Logo className="h-10 w-auto" />
+            <Logo className="h-10 w-auto" alt="Photographer Bulao Logo" />
             <span className="hidden font-bold sm:inline-block font-headline text-lg">Photographer Bulao</span>
           </Link>
         </div>
@@ -67,7 +67,7 @@ export function AppHeader() {
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
             <Link href="/" className="flex items-center space-x-2">
-               <Logo className="h-10 w-auto" />
+               <Logo className="h-10 w-auto" alt="Photographer Bulao Logo" />
               <span className="font-bold font-headline text-lg">Photographer Bulao</span>
             </Link>
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
