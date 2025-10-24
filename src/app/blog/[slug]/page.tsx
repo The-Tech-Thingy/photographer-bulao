@@ -1,6 +1,7 @@
 'use client';
 
 import { use, useEffect, useState } from 'react';
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/lib/blog-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -13,10 +14,29 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import type { BlogPost } from '@/lib/types'
 
+type Props = {
+  params: { slug: string }
+}
 
-export default function BlogPostPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
-  const params = use(paramsPromise);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = blogPosts.find((p) => p.slug === params.slug);
+
+  if (!post) {
+    return {
+      title: 'Not Found',
+      description: 'The page you are looking for does not exist.',
+    }
+  }
+
+  return {
+    title: post.title,
+    description: post.summary,
+  }
+}
+
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = blogPosts.find((p) => p.slug === params.slug);
   const [postUrl, setPostUrl] = useState('');
   const { toast } = useToast();
@@ -45,21 +65,21 @@ export default function BlogPostPage({ params: paramsPromise }: { params: Promis
     <div className="flex items-center gap-2">
       <span className="text-sm font-medium text-muted-foreground">Share:</span>
       <Button variant="outline" size="icon" asChild>
-        <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
           <Twitter className="h-4 w-4" />
         </a>
       </Button>
       <Button variant="outline" size="icon" asChild>
-        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
           <Facebook className="h-4 w-4" />
         </a>
       </Button>
        <Button variant="outline" size="icon" asChild>
-        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
           <Linkedin className="h-4 w-4" />
         </a>
       </Button>
-      <Button variant="outline" size="icon" onClick={handleCopyLink}>
+      <Button variant="outline" size="icon" onClick={handleCopyLink} aria-label="Copy link">
         <LinkIcon className="h-4 w-4" />
       </Button>
     </div>

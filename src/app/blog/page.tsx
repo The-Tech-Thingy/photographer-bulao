@@ -3,9 +3,14 @@ import Link from 'next/link';
 import { blogPosts } from '@/lib/blog-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Insights, tips, and stories from the world of professional photography.',
+}
 
 export default function BlogPage() {
   return (
@@ -23,7 +28,7 @@ export default function BlogPage() {
           return (
             <Card key={post.slug} className="flex flex-col overflow-hidden group">
               {postImage && (
-                <Link href={`/blog/${post.slug}`} className="block overflow-hidden">
+                <Link href={`/blog/${post.slug}`} className="block overflow-hidden" aria-label={post.title}>
                   <Image
                     src={postImage.imageUrl}
                     alt={post.title}
@@ -35,8 +40,8 @@ export default function BlogPage() {
                 </Link>
               )}
               <CardHeader>
-                <CardTitle>
-                  <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                <CardTitle as="h2">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors text-xl">
                     {post.title}
                   </Link>
                 </CardTitle>

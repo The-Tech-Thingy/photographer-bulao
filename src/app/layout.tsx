@@ -4,10 +4,27 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { AppHeader } from '@/components/layout/app-header';
 import { AppFooter } from '@/components/layout/app-footer';
+import { Inter, Bebas_Neue } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const bebas_neue = Bebas_Neue({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
+  variable: '--font-bebas-neue',
+});
 
 export const metadata: Metadata = {
-  title: 'Photographer Bulao',
-  description: 'Find and book professional photographers near you, instantly.',
+  title: {
+    template: '%s | Photographer Bulao',
+    default: 'Photographer Bulao - On-Demand Professional Photographers in Mumbai',
+  },
+  description: 'Find and book professional photographers near you, instantly. We offer services for corporate headshots, weddings, events, real estate, and more.',
 };
 
 export default function RootLayout({
@@ -16,16 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-          rel="stylesheet"
-        />
-         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${bebas_neue.variable}`}>
+      <head />
       <body className={cn('min-h-screen bg-background font-body antialiased')}>
         <div className="relative flex min-h-screen flex-col">
           <AppHeader />
