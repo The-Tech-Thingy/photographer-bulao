@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
-      <div className="text-center mb-8 md:mb-12">
+      <header className="text-center mb-8 md:mb-12">
         <h1 className="text-3xl md:text-4xl font-bold font-headline">The Photographer Bulao Blog</h1>
         <p className="mt-2 text-lg text-muted-foreground max-w-2xl mx-auto">
           Insights, tips, and stories from the world of professional photography.
         </p>
-      </div>
+      </header>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((post) => {

@@ -1,10 +1,16 @@
 import { BookingForm } from '@/components/booking-form';
-import { Briefcase, Bot } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Book a Photographer',
+    description: 'Complete the steps to book a pre-vetted, professional photographer for your shoot instantly.',
+}
 
 export default function BookPage() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
-      <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+      <header className="flex flex-col items-center text-center mb-8 md:mb-12">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4 border border-primary/20">
             <Briefcase className="h-8 w-8" />
         </div>
@@ -12,7 +18,7 @@ export default function BookPage() {
         <p className="mt-2 text-base md:text-lg text-muted-foreground max-w-2xl">
           Complete the steps below and we'll assign a pre-vetted, professional photographer for your shoot.
         </p>
-      </div>
+      </header>
       <BookingForm />
     </div>
   );

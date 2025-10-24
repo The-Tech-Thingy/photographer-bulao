@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Briefcase, Building, Utensils, PartyPopper, CalendarCheck, Award, Camera, Heart, User, Users, Shirt } from 'lucide-react';
+import { Briefcase, Building, Utensils, PartyPopper, Heart, User, Users, Shirt } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { LocationSearch } from '@/components/location-search';
@@ -31,7 +31,7 @@ export default function Home() {
   const servicesToShow = photographyServices.slice(0, 8);
 
   return (
-    <div className="flex flex-col gap-8 md:gap-16 pb-16">
+    <>
       <section className="relative h-[60vh] md:h-[70vh] w-full">
         {heroImage && (
           <Image
@@ -61,8 +61,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 -mt-16 md:-mt-24 z-20">
-        <h2 className="text-sm font-semibold uppercase text-muted-foreground text-center mb-6">Trusted by businesses in Mumbai</h2>
+      <section className="container mx-auto px-4 -mt-16 md:-mt-24 z-20" aria-labelledby="trusted-by-heading">
+        <h2 id="trusted-by-heading" className="text-sm font-semibold uppercase text-muted-foreground text-center mb-6">Trusted by businesses in Mumbai</h2>
         <div className="flex flex-wrap justify-center items-center gap-x-8 md:gap-x-12 gap-y-4">
             {trustedByLogos.map(logo => (
                 <Image key={logo.id} src={logo.url} alt={logo.alt} width={120} height={30} className="grayscale opacity-60" />
@@ -70,8 +70,8 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="container mx-auto px-4 mt-8 md:mt-16">
-        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-6 md:mb-8">Book by Service</h2>
+      <section className="container mx-auto px-4 mt-8 md:mt-16" aria-labelledby="services-heading">
+        <h2 id="services-heading" className="text-2xl md:text-3xl font-bold font-headline text-center mb-6 md:mb-8">Book by Service</h2>
          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {servicesToShow.map((service) => {
             const serviceImage = PlaceHolderImages.find((img) => img.id === service.imageId);
@@ -102,9 +102,9 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="bg-muted py-12 md:py-20">
+      <section className="bg-muted py-12 md:py-20" aria-labelledby="how-it-works-heading">
         <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold font-headline">The Uber for Photographers</h2>
+            <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-bold font-headline">The Uber for Photographers</h2>
              <p className="text-muted-foreground text-center mt-2 mb-8 max-w-2xl mx-auto">Get stunning photos in just a few clicks. A guaranteed professional photographer will be assigned for your work.</p>
             <div className="mt-12 grid gap-10 md:gap-8 md:grid-cols-3">
               <div className="flex flex-col items-center">
@@ -132,6 +132,6 @@ export default function Home() {
         </div>
       </section>
 
-    </div>
+    </>
   );
 }

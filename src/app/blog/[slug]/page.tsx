@@ -136,8 +136,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <Separator className="my-8" />
 
       {/* Comments Section */}
-      <div className="space-y-8">
-        <h2 className="text-2xl font-bold font-headline">{post.comments.length} Response(s)</h2>
+      <section className="space-y-8" aria-labelledby="comments-heading">
+        <h2 id="comments-heading" className="text-2xl font-bold font-headline">{post.comments.length} Response(s)</h2>
         
         {/* Comment Form */}
         <div className="p-6 border rounded-lg">
@@ -173,7 +173,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </article>
   );
 }
