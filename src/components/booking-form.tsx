@@ -1,14 +1,33 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Briefcase, Building, Utensils, PartyPopper, ArrowLeft, CheckCircle, Clock, Image as ImageIcon, Check, MapPin, CreditCard, User, Truck, Sparkles, Calendar as CalendarIcon, Video, Users, Heart, Shirt } from 'lucide-react';
+import {
+  Briefcase,
+  Building,
+  Utensils,
+  PartyPopper,
+  ArrowLeft,
+  CheckCircle,
+  Clock,
+  Image as ImageIcon,
+  Check,
+  MapPin,
+  CreditCard,
+  User,
+  Truck,
+  Sparkles,
+  Calendar as CalendarIcon,
+  Video,
+  Users,
+  Heart,
+  Shirt
+} from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from './ui/separator';
 import { useToast } from '@/hooks/use-toast';
@@ -26,35 +45,34 @@ const services = [
   { name: 'Real Estate', icon: Building },
   { name: 'Food & Menu', icon: Utensils },
   { name: 'Private Events', icon: PartyPopper },
-  { name: 'Wedding', icon: Heart},
-  { name: 'Portraits', icon: User},
-  { name: 'Family', icon: Users},
-  { name: 'Fashion', icon: Shirt},
+  { name: 'Wedding', icon: Heart },
+  { name: 'Portraits', icon: User },
+  { name: 'Family', icon: Users },
+  { name: 'Fashion', icon: Shirt },
 ];
 
 const packages = [
-    { id: 'basic', name: 'Basic', basePrice: 2000, baseHours: 2, perHourExtra: 500, description: 'Best for simple needs.', features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
-    { id: 'standard', name: 'Standard', basePrice: 3000, baseHours: 2, perHourExtra: 1000, description: 'Most popular choice.', features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
-    { id: 'premium', name: 'Premium', basePrice: 5000, baseHours: 2, perHourExtra: 1500, description: 'For the highest quality.', features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
-]
+  { id: 'basic', name: 'Basic', basePrice: 2000, baseHours: 2, perHourExtra: 500, description: 'Best for simple needs.', features: ['Standard Gear', '50 Edited Photos', '5-day Delivery'] },
+  { id: 'standard', name: 'Standard', basePrice: 3000, baseHours: 2, perHourExtra: 1000, description: 'Most popular choice.', features: ['Pro Gear', '100 Edited Photos', '3-day Delivery', 'Online Gallery'] },
+  { id: 'premium', name: 'Premium', basePrice: 5000, baseHours: 2, perHourExtra: 1500, description: 'For the highest quality.', features: ['Advanced Gear + Lighting', '250 Edited Photos', '2-day Delivery', 'Online Gallery & Prints'] },
+];
 
 const timeSlots = [
-  '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', 
+  '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
   '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM'
 ];
 
 const ADDON_PRICES = {
-    extraPhotographer: 3000,
-    videographer: 5000,
-    editing: {
-        base: 1000,
-        baseHours: 2,
-        perHourExtra: 200
-    }
-}
+  extraPhotographer: 3000,
+  videographer: 5000,
+  editing: {
+    base: 1000,
+    baseHours: 2,
+    perHourExtra: 200
+  }
+};
 
 export function BookingForm() {
-  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: '',
@@ -71,9 +89,12 @@ export function BookingForm() {
   const { toast } = useToast();
 
   useEffect(() => {
-    const locationFromUrl = searchParams.get('location');
-    const serviceFromUrl = searchParams.get('service');
-    
+    if (typeof window === 'undefined') return;
+
+    const params = new URLSearchParams(window.location.search);
+    const locationFromUrl = params.get('location');
+    const serviceFromUrl = params.get('service');
+
     if (serviceFromUrl) {
       handleChange('service', serviceFromUrl);
     }
@@ -84,9 +105,10 @@ export function BookingForm() {
     }
 
     if (locationFromUrl && serviceFromUrl) {
-        setStep(3); // If both are present, skip to step 3
+      setStep(3); // If both are present, skip to step 3
     }
-  }, [searchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -97,32 +119,32 @@ export function BookingForm() {
 
   const handleConfirmBooking = () => {
     toast({
-        title: "Booking Confirmed!",
-        description: "A professional photographer has been assigned to your booking.",
-        variant: "default",
-    })
+      title: "Booking Confirmed!",
+      description: "A professional photographer has been assigned to your booking.",
+      variant: "default",
+    });
     nextStep();
-  }
+  };
 
   const onAiRecommendation = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const result = await handleRecommendation(null, formData);
+    const form = new FormData(event.currentTarget);
+    const result = await handleRecommendation(null, form);
     if (result.error) {
-        toast({
-            title: "An error occurred",
-            description: result.error,
-            variant: "destructive",
-        })
+      toast({
+        title: "An error occurred",
+        description: result.error,
+        variant: "destructive",
+      });
     } else {
-        setAiService(result.recommendedPackages);
+      setAiService(result.recommendedPackages);
     }
-  }
+  };
 
   const selectAiService = () => {
     handleChange('service', 'AI Recommended');
     nextStep();
-  }
+  };
 
   const progress = (step / 7) * 100;
 
@@ -130,154 +152,157 @@ export function BookingForm() {
     switch (step) {
       case 1:
         return (
-            <CardContent className="space-y-6">
-                <div className="space-y-2">
-                    <Label htmlFor="location"><MapPin className="inline-block mr-2"/>Location</Label>
-                    <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
-                </div>
-            </CardContent>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="location"><MapPin className="inline-block mr-2" />Location</Label>
+              <Input id="location" placeholder="e.g., Bandra West, Mumbai" value={formData.location} onChange={(e) => handleChange('location', e.target.value)} />
+            </div>
+          </CardContent>
         );
       case 2:
         return (
-            <Tabs defaultValue="list" className="w-full">
-                <CardHeader>
-                    <CardTitle>Select a Service</CardTitle>
-                    <CardDescription>What type of photoshoot are you looking for?</CardDescription>
-                </CardHeader>
-                <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="list">Select a Service</TabsTrigger>
-                    <TabsTrigger value="ai">Use AI Assistant</TabsTrigger>
-                </TabsList>
-                <TabsContent value="list">
-                     <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
-                        {services.map((service) => (
-                        <Card
-                            key={service.name}
-                            className={`p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${formData.service === service.name ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`}
-                            onClick={() => { handleChange('service', service.name); nextStep(); }}
-                        >
-                            <service.icon className="w-8 h-8 mb-2 text-primary" />
-                            <p className="font-semibold text-sm">{service.name}</p>
-                        </Card>
-                        ))}
-                    </CardContent>
-                </TabsContent>
-                <TabsContent value="ai">
-                    <CardContent className="pt-6">
-                        <form onSubmit={onAiRecommendation} className="space-y-4">
-                            <Textarea
-                                name="userInput"
-                                placeholder="e.g., 'I need a photographer for my small, outdoor wedding in the afternoon. I prefer a candid, photojournalistic style. Around 50 guests.'"
-                                rows={5}
-                                required
-                                />
-                            <Button type="submit" className="w-full">
-                                Analyze My Need
-                            </Button>
-                        </form>
-                        {aiService && (
-                            <div className="mt-4">
-                                <h3 className="text-lg font-semibold flex items-center gap-2">
-                                    <Sparkles className="h-5 w-5 text-primary"/>
-                                    Suggested Service
-                                </h3>
-                                <Card className="bg-muted mt-2">
-                                    <CardContent className="p-4">
-                                        <div
-                                            className="prose prose-sm max-w-none text-foreground dark:prose-invert"
-                                            dangerouslySetInnerHTML={{ __html: aiService.replace(/\n/g, '<br />')}}
-                                        />
-                                         <Button onClick={selectAiService} className="w-full mt-4">
-                                            Proceed with this Service
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        )}
-                    </CardContent>
-                </TabsContent>
-            </Tabs>
+          <Tabs defaultValue="list" className="w-full">
+            <CardHeader>
+              <CardTitle>Select a Service</CardTitle>
+              <CardDescription>What type of photoshoot are you looking for?</CardDescription>
+            </CardHeader>
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="list">Select a Service</TabsTrigger>
+              <TabsTrigger value="ai">Use AI Assistant</TabsTrigger>
+            </TabsList>
+            <TabsContent value="list">
+              <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
+                {services.map((service) => (
+                  <Card
+                    key={service.name}
+                    className={`p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${formData.service === service.name ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`}
+                    onClick={() => { handleChange('service', service.name); nextStep(); }}
+                  >
+                    <service.icon className="w-8 h-8 mb-2 text-primary" />
+                    <p className="font-semibold text-sm">{service.name}</p>
+                  </Card>
+                ))}
+              </CardContent>
+            </TabsContent>
+
+            <TabsContent value="ai">
+              <CardContent className="pt-6">
+                <form onSubmit={onAiRecommendation} className="space-y-4">
+                  <Textarea
+                    name="userInput"
+                    placeholder="e.g., 'I need a photographer for my small, outdoor wedding in the afternoon. I prefer a candid, photojournalistic style. Around 50 guests.'"
+                    rows={5}
+                    required
+                  />
+                  <Button type="submit" className="w-full">
+                    Analyze My Need
+                  </Button>
+                </form>
+                {aiService && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-primary" />
+                      Suggested Service
+                    </h3>
+                    <Card className="bg-muted mt-2">
+                      <CardContent className="p-4">
+                        <div
+                          className="prose prose-sm max-w-none text-foreground dark:prose-invert"
+                          dangerouslySetInnerHTML={{ __html: aiService.replace(/\n/g, '<br />') }}
+                        />
+                        <Button onClick={selectAiService} className="w-full mt-4">
+                          Proceed with this Service
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+              </CardContent>
+            </TabsContent>
+          </Tabs>
         );
       case 3:
         return (
-            <>
-                <CardHeader>
-                    <CardTitle>Shoot Details</CardTitle>
-                    <CardDescription>When do you need the photoshoot to take place?</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="date"><CalendarIcon className="inline-block mr-2"/>Date</Label>
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                <Button
-                                    variant={"outline"}
-                                    className={cn(
-                                    "w-full justify-start text-left font-normal",
-                                    !formData.date && "text-muted-foreground"
-                                    )}
-                                >
-                                    <CalendarIcon className="mr-2 h-4 w-4" />
-                                    {formData.date ? format(formData.date, "PPP") : <span>Pick a date</span>}
-                                </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0">
-                                <Calendar
-                                    mode="single"
-                                    selected={formData.date}
-                                    onSelect={(date) => handleChange('date', date)}
-                                    initialFocus
-                                />
-                                </PopoverContent>
-                            </Popover>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="time"><Clock className="inline-block mr-2"/>Time</Label>
-                            <Select value={formData.time} onValueChange={(value) => handleChange('time', value)}>
-                                <SelectTrigger id="time">
-                                    <SelectValue placeholder="Select a time slot" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {timeSlots.map((time) => (
-                                        <SelectItem key={time} value={time}>{time}</SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="duration"><Clock className="inline-block mr-2"/>Duration (hours)</Label>
-                        <Select value={formData.duration} onValueChange={(value) => handleChange('duration', value)}>
-                            <SelectTrigger id="duration">
-                                <SelectValue placeholder="Select duration" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {[...Array(8)].map((_, i) => (
-                                <SelectItem key={i + 1} value={`${i + 1}`}>{i + 1} hour{i > 0 ? 's' : ''}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="space-y-2">
-                        <Label><ImageIcon className="inline-block mr-2"/>Photo Delivery</Label>
-                        <RadioGroup defaultValue="edited" value={formData.delivery} onValueChange={(value) => handleChange('delivery', value)} className="flex gap-4">
-                            <Label className={`flex-1 p-4 border rounded-md cursor-pointer ${formData.delivery === 'raw' ? 'border-primary' : ''}`}>
-                                <RadioGroupItem value="raw" id="r1" className="sr-only" />
-                                <h4 className="font-semibold">Raw Photos</h4>
-                                <p className="text-sm text-muted-foreground">Unedited, original files.</p>
-                            </Label>
-                            <Label className={`flex-1 p-4 border rounded-md cursor-pointer ${formData.delivery === 'edited' ? 'border-primary' : ''}`}>
-                                <RadioGroupItem value="edited" id="r2" className="sr-only" />
-                                <h4 className="font-semibold">Edited Photos</h4>
-                                <p className="text-sm text-muted-foreground">Professionally edited and color graded.</p>
-                             </Label>
-                        </RadioGroup>
-                    </div>
-                </CardContent>
-            </>
+          <>
+            <CardHeader>
+              <CardTitle>Shoot Details</CardTitle>
+              <CardDescription>When do you need the photoshoot to take place?</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="date"><CalendarIcon className="inline-block mr-2" />Date</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !formData.date && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {formData.date ? format(formData.date, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={formData.date}
+                        onSelect={(date: Date) => handleChange('date', date)}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="time"><Clock className="inline-block mr-2" />Time</Label>
+                  <Select value={formData.time} onValueChange={(value) => handleChange('time', value)}>
+                    <SelectTrigger id="time">
+                      <SelectValue placeholder="Select a time slot" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {timeSlots.map((time) => (
+                        <SelectItem key={time} value={time}>{time}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="duration"><Clock className="inline-block mr-2" />Duration (hours)</Label>
+                <Select value={formData.duration} onValueChange={(value) => handleChange('duration', value)}>
+                  <SelectTrigger id="duration">
+                    <SelectValue placeholder="Select duration" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[...Array(8)].map((_, i) => (
+                      <SelectItem key={i + 1} value={`${i + 1}`}>{i + 1} hour{i > 0 ? 's' : ''}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label><ImageIcon className="inline-block mr-2" />Photo Delivery</Label>
+                <RadioGroup defaultValue="edited" value={formData.delivery} onValueChange={(value) => handleChange('delivery', value)} className="flex gap-4">
+                  <Label className={`flex-1 p-4 border rounded-md cursor-pointer ${formData.delivery === 'raw' ? 'border-primary' : ''}`}>
+                    <RadioGroupItem value="raw" id="r1" className="sr-only" />
+                    <h4 className="font-semibold">Raw Photos</h4>
+                    <p className="text-sm text-muted-foreground">Unedited, original files.</p>
+                  </Label>
+                  <Label className={`flex-1 p-4 border rounded-md cursor-pointer ${formData.delivery === 'edited' ? 'border-primary' : ''}`}>
+                    <RadioGroupItem value="edited" id="r2" className="sr-only" />
+                    <h4 className="font-semibold">Edited Photos</h4>
+                    <p className="text-sm text-muted-foreground">Professionally edited and color graded.</p>
+                  </Label>
+                </RadioGroup>
+              </div>
+            </CardContent>
+          </>
         );
-       case 4:
+      case 4:
         return (
           <>
             <CardHeader>
@@ -287,92 +312,93 @@ export function BookingForm() {
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {packages.map((pkg) => (
                 <Card key={pkg.id} className={`flex flex-col cursor-pointer transition-all ${formData.package === pkg.id ? 'border-primary ring-2 ring-primary' : 'hover:border-primary/50'}`} onClick={() => handleChange('package', pkg.id)}>
-                    <CardHeader>
-                        <CardTitle>{pkg.name}</CardTitle>
-                         <CardDescription className="text-2xl font-bold text-primary">
-                            ₹{pkg.basePrice}<span className="text-sm font-normal text-muted-foreground"> for {pkg.baseHours} hrs</span>
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <p className='text-sm text-muted-foreground mb-3'>+ ₹{pkg.perHourExtra}/hr after {pkg.baseHours} hrs</p>
-                        <ul className="space-y-2 text-sm">
-                        {pkg.features.map((feature, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                                <Check className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
-                                <span>{feature}</span>
-                            </li>
-                        ))}
-                        </ul>
-                    </CardContent>
-                    <CardFooter>
-                         <div className={`w-full flex justify-center items-center h-6`}>
-                            {formData.package === pkg.id && <CheckCircle className="text-primary" />}
-                        </div>
-                    </CardFooter>
+                  <CardHeader>
+                    <CardTitle>{pkg.name}</CardTitle>
+                    <CardDescription className="text-2xl font-bold text-primary">
+                      ₹{pkg.basePrice}<span className="text-sm font-normal text-muted-foreground"> for {pkg.baseHours} hrs</span>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className='text-sm text-muted-foreground mb-3'>+ ₹{pkg.perHourExtra}/hr after {pkg.baseHours} hrs</p>
+                    <ul className="space-y-2 text-sm">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <div className={`w-full flex justify-center items-center h-6`}>
+                      {formData.package === pkg.id && <CheckCircle className="text-primary" />}
+                    </div>
+                  </CardFooter>
                 </Card>
               ))}
             </CardContent>
           </>
         );
-    case 5:
+      case 5:
         return (
-            <>
+          <>
             <CardHeader>
-                <CardTitle>Add-on Services</CardTitle>
-                <CardDescription>Enhance your photoshoot experience.</CardDescription>
+              <CardTitle>Add-on Services</CardTitle>
+              <CardDescription>Enhance your photoshoot experience.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className={`flex items-start space-x-3 p-4 border rounded-md  ${formData.extraPhotographer ? 'border-primary' : ''}`}>
-                    <Checkbox id="extra-photographer" checked={formData.extraPhotographer} onCheckedChange={(checked) => handleChange('extraPhotographer', checked)} className="mt-1" />
-                    <div className="grid gap-1.5 leading-none">
-                        <label htmlFor="extra-photographer" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center">
-                            <Users className="inline-block mr-2" /> Extra Photographer
-                        </label>
-                        <p className="text-sm text-muted-foreground">
-                            Ideal for large events to ensure no moment is missed. (₹{ADDON_PRICES.extraPhotographer})
-                        </p>
-                    </div>
+              <div className={`flex items-start space-x-3 p-4 border rounded-md  ${formData.extraPhotographer ? 'border-primary' : ''}`}>
+                <Checkbox id="extra-photographer" checked={formData.extraPhotographer} onCheckedChange={(checked) => handleChange('extraPhotographer', checked)} className="mt-1" />
+                <div className="grid gap-1.5 leading-none">
+                  <label htmlFor="extra-photographer" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center">
+                    <Users className="inline-block mr-2" /> Extra Photographer
+                  </label>
+                  <p className="text-sm text-muted-foreground">
+                    Ideal for large events to ensure no moment is missed. (₹{ADDON_PRICES.extraPhotographer})
+                  </p>
                 </div>
-                <div className={`flex items-start space-x-3 p-4 border rounded-md  ${formData.videographer ? 'border-primary' : ''}`}>
-                    <Checkbox id="videographer" checked={formData.videographer} onCheckedChange={(checked) => handleChange('videographer', checked)} className="mt-1" />
-                    <div className="grid gap-1.5 leading-none">
-                         <label htmlFor="videographer" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center">
-                            <Video className="inline-block mr-2" /> Videographer/Cinematographer
-                        </label>
-                        <p className="text-sm text-muted-foreground">
-                            Get a stunning cinematic video of your event. (₹{ADDON_PRICES.videographer})
-                        </p>
-                    </div>
+              </div>
+
+              <div className={`flex items-start space-x-3 p-4 border rounded-md  ${formData.videographer ? 'border-primary' : ''}`}>
+                <Checkbox id="videographer" checked={formData.videographer} onCheckedChange={(checked) => handleChange('videographer', checked)} className="mt-1" />
+                <div className="grid gap-1.5 leading-none">
+                  <label htmlFor="videographer" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center">
+                    <Video className="inline-block mr-2" /> Videographer/Cinematographer
+                  </label>
+                  <p className="text-sm text-muted-foreground">
+                    Get a stunning cinematic video of your event. (₹{ADDON_PRICES.videographer})
+                  </p>
                 </div>
+              </div>
             </CardContent>
-            </>
+          </>
         );
-      case 6:
+      case 6: {
         const selectedPkg = packages.find(p => p.id === formData.package);
-        const duration = parseInt(formData.duration);
-        
+        const duration = parseInt(formData.duration, 10);
+
         let packagePrice = 0;
         if (selectedPkg) {
-            packagePrice = selectedPkg.basePrice;
-            if (duration > selectedPkg.baseHours) {
-                packagePrice += (duration - selectedPkg.baseHours) * selectedPkg.perHourExtra;
-            }
+          packagePrice = selectedPkg.basePrice;
+          if (duration > selectedPkg.baseHours) {
+            packagePrice += (duration - selectedPkg.baseHours) * selectedPkg.perHourExtra;
+          }
         }
 
         let editingPrice = 0;
         if (formData.delivery === 'edited') {
-            editingPrice = ADDON_PRICES.editing.base;
-            if (duration > ADDON_PRICES.editing.baseHours) {
-                editingPrice += (duration - ADDON_PRICES.editing.baseHours) * ADDON_PRICES.editing.perHourExtra;
-            }
+          editingPrice = ADDON_PRICES.editing.base;
+          if (duration > ADDON_PRICES.editing.baseHours) {
+            editingPrice += (duration - ADDON_PRICES.editing.baseHours) * ADDON_PRICES.editing.perHourExtra;
+          }
         }
 
         let addonsPrice = 0;
         if (formData.extraPhotographer) {
-            addonsPrice += ADDON_PRICES.extraPhotographer;
+          addonsPrice += ADDON_PRICES.extraPhotographer;
         }
         if (formData.videographer) {
-            addonsPrice += ADDON_PRICES.videographer;
+          addonsPrice += ADDON_PRICES.videographer;
         }
 
         const total = packagePrice + editingPrice + addonsPrice;
@@ -384,117 +410,118 @@ export function BookingForm() {
               <CardDescription>Review your details and make a partial payment to confirm.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="p-4 border rounded-lg space-y-4 bg-muted/50">
-                    <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Service</span>
-                        <span className="font-semibold">{formData.service}</span>
-                    </div>
-                    <Separator/>
-                    <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Location</span>
-                        <span className="font-semibold">{formData.location}</span>
-                    </div>
-                    <Separator/>
-                    <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Date & Time</span>
-                        <span className="font-semibold">{formData.date ? format(formData.date, "PPP") : 'Not set'} at {formData.time || 'Not set'}</span>
-                    </div>
-                    <Separator/>
-                    <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Duration</span>
-                        <span className="font-semibold">{formData.duration} hour(s)</span>
-                    </div>
-                    <Separator/>
-                    <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Package ({selectedPkg?.name})</span>
-                        <span className="font-semibold capitalize">₹{packagePrice}</span>
-                    </div>
-                    <Separator/>
-                     <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground">Photo Delivery ({formData.delivery})</span>
-                        <span className="font-semibold capitalize">{formData.delivery === 'raw' ? 'Included' : `₹${editingPrice}`}</span>
-                    </div>
-                    
-                     { (formData.extraPhotographer || formData.videographer) && <Separator/> }
-                     
-                     { formData.extraPhotographer && (
-                        <div className="flex justify-between items-center">
-                            <span className="text-muted-foreground">Add-on: Extra Photographer</span>
-                            <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer}</span>
-                        </div>
-                     )}
-                     { formData.videographer && (
-                        <div className="flex justify-between items-center">
-                            <span className="text-muted-foreground">Add-on: Videographer</span>
-                            <span className="font-semibold">₹{ADDON_PRICES.videographer}</span>
-                        </div>
-                     )}
-                     <Separator/>
-                    <div className="flex justify-between items-center text-lg">
-                        <span className="font-bold">Total</span>
-                        <span className="font-bold text-primary">₹{total}</span>
-                    </div>
+              <div className="p-4 border rounded-lg space-y-4 bg-muted/50">
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Service</span>
+                  <span className="font-semibold">{formData.service}</span>
                 </div>
-                <div className="p-4 border rounded-lg">
-                     <h4 className="font-semibold mb-2">Partial Advance Payment</h4>
-                     <p className="text-sm text-muted-foreground mb-4">Pay 25% now to confirm your booking. The rest is due after photo delivery.</p>
-                     <p className="text-2xl font-bold text-center">₹{total * 0.25}</p>
+                <Separator />
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Location</span>
+                  <span className="font-semibold">{formData.location}</span>
                 </div>
+                <Separator />
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Date & Time</span>
+                  <span className="font-semibold">{formData.date ? format(formData.date as any, "PPP") : 'Not set'} at {formData.time || 'Not set'}</span>
+                </div>
+                <Separator />
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Duration</span>
+                  <span className="font-semibold">{formData.duration} hour(s)</span>
+                </div>
+                <Separator />
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Package ({selectedPkg?.name})</span>
+                  <span className="font-semibold capitalize">₹{packagePrice}</span>
+                </div>
+                <Separator />
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Photo Delivery ({formData.delivery})</span>
+                  <span className="font-semibold capitalize">{formData.delivery === 'raw' ? 'Included' : `₹${editingPrice}`}</span>
+                </div>
+
+                {(formData.extraPhotographer || formData.videographer) && <Separator />}
+
+                {formData.extraPhotographer && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Add-on: Extra Photographer</span>
+                    <span className="font-semibold">₹{ADDON_PRICES.extraPhotographer}</span>
+                  </div>
+                )}
+                {formData.videographer && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Add-on: Videographer</span>
+                    <span className="font-semibold">₹{ADDON_PRICES.videographer}</span>
+                  </div>
+                )}
+                <Separator />
+                <div className="flex justify-between items-center text-lg">
+                  <span className="font-bold">Total</span>
+                  <span className="font-bold text-primary">₹{total}</span>
+                </div>
+              </div>
+              <div className="p-4 border rounded-lg">
+                <h4 className="font-semibold mb-2">Partial Advance Payment</h4>
+                <p className="text-sm text-muted-foreground mb-4">Pay 25% now to confirm your booking. The rest is due after photo delivery.</p>
+                <p className="text-2xl font-bold text-center">₹{total * 0.25}</p>
+              </div>
             </CardContent>
           </>
         );
-        case 7:
-            return (
-                <div className='flex flex-col items-center text-center p-8'>
-                    <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
-                    <h2 className='text-2xl font-bold font-headline mb-2'>Booking Confirmed!</h2>
-                    <p className='text-muted-foreground max-w-md mb-6'>A professional photographer has been assigned. You can now track their ETA and see your final photos in the bookings section.</p>
-                    <div className='p-6 border rounded-lg w-full max-w-sm space-y-4 bg-muted/50'>
-                         <div className="flex items-center gap-4">
-                            <div className='p-3 bg-background rounded-full'>
-                                <User className="w-6 h-6 text-primary"/>
-                            </div>
-                            <div>
-                                <p className='text-sm text-muted-foreground'>Assigned Photographer</p>
-                                <p className='font-bold'>Priya Singh</p>
-                            </div>
-                        </div>
-                        <Separator />
-                        <div className="flex items-center gap-4">
-                            <div className='p-3 bg-background rounded-full'>
-                                <Truck className="w-6 h-6 text-primary"/>
-                            </div>
-                            <div>
-                                <p className='text-sm text-muted-foreground'>ETA</p>
-                                <p className='font-bold'>Arriving in 15 minutes</p>
-                            </div>
-                        </div>
-                    </div>
+      }
+      case 7:
+        return (
+          <div className='flex flex-col items-center text-center p-8'>
+            <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
+            <h2 className='text-2xl font-bold font-headline mb-2'>Booking Confirmed!</h2>
+            <p className='text-muted-foreground max-w-md mb-6'>A professional photographer has been assigned. You can now track their ETA and see your final photos in the bookings section.</p>
+            <div className='p-6 border rounded-lg w-full max-w-sm space-y-4 bg-muted/50'>
+              <div className="flex items-center gap-4">
+                <div className='p-3 bg-background rounded-full'>
+                  <User className="w-6 h-6 text-primary" />
                 </div>
-            )
+                <div>
+                  <p className='text-sm text-muted-foreground'>Assigned Photographer</p>
+                  <p className='font-bold'>Priya Singh</p>
+                </div>
+              </div>
+              <Separator />
+              <div className="flex items-center gap-4">
+                <div className='p-3 bg-background rounded-full'>
+                  <Truck className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className='text-sm text-muted-foreground'>ETA</p>
+                  <p className='font-bold'>Arriving in 15 minutes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
   };
 
   const getStepTitle = () => {
-    switch(step) {
-        case 1:
-            return { title: 'Shoot Location', description: 'Where do you need the photoshoot to take place?' };
-        case 2:
-            return { title: 'Select a Service', description: 'What type of photoshoot are you looking for?' };
-        case 3:
-            return { title: 'Shoot Details', description: 'When do you need the photoshoot to take place?' };
-        case 4:
-            return { title: 'Select a Package', description: 'Choose a package that fits your needs.' };
-        case 5:
-            return { title: 'Add-on Services', description: 'Enhance your photoshoot experience.' };
-        case 6:
-            return { title: 'Confirm Booking', description: 'Review your details and confirm.' };
-        default:
-            return { title: '', description: '' };
+    switch (step) {
+      case 1:
+        return { title: 'Shoot Location', description: 'Where do you need the photoshoot to take place?' };
+      case 2:
+        return { title: 'Select a Service', description: 'What type of photoshoot are you looking for?' };
+      case 3:
+        return { title: 'Shoot Details', description: 'When do you need the photoshoot to take place?' };
+      case 4:
+        return { title: 'Select a Package', description: 'Choose a package that fits your needs.' };
+      case 5:
+        return { title: 'Add-on Services', description: 'Enhance your photoshoot experience.' };
+      case 6:
+        return { title: 'Confirm Booking', description: 'Review your details and confirm.' };
+      default:
+        return { title: '', description: '' };
     }
-  }
+  };
 
   const { title, description } = getStepTitle();
 
@@ -502,42 +529,43 @@ export function BookingForm() {
     <Card className="w-full">
       <CardHeader>
         <Progress value={progress} className="w-full h-2 mb-4" />
-        {step < 7 && (
-             (step !== 2) && (
-             <>
-                 <CardTitle>{title}</CardTitle>
-                 <CardDescription>{description}</CardDescription>
-             </>
-             )
+        {step < 7 && (step !== 2) && (
+          <>
+            <CardTitle>{title}</CardTitle>
+            <CardDescription>{description}</CardDescription>
+          </>
         )}
       </CardHeader>
+
       {renderStep()}
+
       <CardFooter className="flex justify-between mt-6">
         {step > 1 && step < 7 && (
           <Button variant="outline" onClick={prevStep}>
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
         )}
+
         {(step < 6 && step !== 2) && (
-            <Button onClick={nextStep} disabled={ (step === 1 && !formData.location) || (step === 3 && (!formData.date || !formData.time)) }>
-                Next
-            </Button>
+          <Button onClick={nextStep} disabled={(step === 1 && !formData.location) || (step === 3 && (!formData.date || !formData.time))}>
+            Next
+          </Button>
         )}
-         {step === 6 && (
-            <Button className='w-full' size="lg" onClick={handleConfirmBooking}>
-                <CreditCard className="mr-2 h-4 w-4" /> Pay & Confirm Booking
-            </Button>
+
+        {step === 6 && (
+          <Button className='w-full' size="lg" onClick={handleConfirmBooking}>
+            <CreditCard className="mr-2 h-4 w-4" /> Pay & Confirm Booking
+          </Button>
         )}
+
         {step === 7 && (
-            <div className='w-full flex justify-center'>
-                <Button onClick={() => window.location.href = '/bookings'}>
-                    Go to My Bookings
-                </Button>
-            </div>
+          <div className='w-full flex justify-center'>
+            <Button onClick={() => (window.location.href = '/bookings')}>
+              Go to My Bookings
+            </Button>
+          </div>
         )}
       </CardFooter>
     </Card>
   );
 }
-
-    
